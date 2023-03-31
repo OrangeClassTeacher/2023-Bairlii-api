@@ -9,6 +9,12 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 
+
+app.use("/api", menuRouter);
+app.use("/api", cateRouter);
+app.use("/api", productRouter);
+app.use("/api", userRouter);
+
 mongoose
   .connect(process.env.MONGO_DB_STRING)
   .then(() => console.log("Database successfully connected"))
