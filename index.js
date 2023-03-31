@@ -15,6 +15,15 @@ app.use("/api", cateRouter);
 app.use("/api", productRouter);
 app.use("/api", userRouter);
 
+
+
+app.get("/api", (req, res) => {
+  res.json({ message: "Welcome Rest API" });
+});
+
+
+
+
 mongoose
   .connect(process.env.MONGO_DB_STRING)
   .then(() => console.log("Database successfully connected"))
