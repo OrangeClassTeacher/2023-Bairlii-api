@@ -2,22 +2,24 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import propertiesRoute from "./routes/properties.route";
 import mongoose from "mongoose";
+import usersRoute from "./routes/users.route";
 
 dotenv.config();
 
+const uri: string = process.env.MONGO_DB_URI || "";
+
 const app: Express = express();
 const port = process.env.PORT;
-
-const uri: string = process.env.DB_URI || "";
 
 mongoose
   .connect(uri)
   .then(() => console.log("DB success"))
   .catch((err) => console.log(err));
 
+app.use("/api", usersRoute);
 app.use("/api", propertiesRoute);
 
-app.get("/api", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   res.send(" ⚡️⚡️⚡️⚡️⚡️Express + TypeScript Server");
 });
 
