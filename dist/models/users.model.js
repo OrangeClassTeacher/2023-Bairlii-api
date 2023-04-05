@@ -19,5 +19,5 @@ const usersSchema = new mongoose_1.Schema({
     ratingAsRenter: String,
     ratingAsLandlord: String,
 });
-const users = (0, mongoose_1.model)("users", usersSchema);
-exports.default = users;
+const Users = (0, mongoose_1.model)("users", usersSchema);
+exports.default = Users;
