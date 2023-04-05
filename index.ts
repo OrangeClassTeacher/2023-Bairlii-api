@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import propertiesRoute from "./routes/properties.route";
 import mongoose from "mongoose";
 import usersRoute from "./routes/users.route";
+import procommendRoute from "./routes/procommed";
+import proratingRoute from "./routes/prorating";
 
 dotenv.config();
 
@@ -18,6 +20,8 @@ mongoose
 
 app.use("/api", usersRoute);
 app.use("/api", propertiesRoute);
+app.use("/api", procommendRoute);
+app.use("/api", proratingRoute);
 
 app.get("/", (req: Request, res: Response) => {
   res.send(" ⚡️⚡️⚡️⚡️⚡️Express + TypeScript Server");
