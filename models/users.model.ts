@@ -38,6 +38,6 @@ const usersSchema = new Schema<IUsers>({
     ratingAsLandlord: String,
 });
 
-const users = model<IUsers>("users", usersSchema);
+const Users = model<IUsers>("users", usersSchema);
 
-export default users;
+export default Users;
