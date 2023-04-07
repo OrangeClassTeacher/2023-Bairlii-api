@@ -20,20 +20,50 @@ interface IUsers {
 }
 
 const usersSchema = new Schema<IUsers>({
-  userName: String,
-  firstName: String,
-  lastName: String,
-  email: String,
+  userName: {
+    type: String,
+    required: [true, "Хэрэглэгчийн нэрийг оруулна уу"],
+  },
+  firstName: {
+    type: String,
+    required: [true, "Нэрээ оруулна уу"],
+  },
+  lastName: {
+    type: String,
+    required: [true, "Овогоо оруулна уу"]
+  },
+  email: {
+    type: String,
+    required: [true, "Хэрэглэгчийн имэйл хаягийг оруулна уу"],
+    unique: true,
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      "Имэйл хаяг буруу байна.",
+    ]
+  },
   address: {
     district: String,
+    required: [true, "Гэрийн хаягаа оруулна уу"],
     subdistrict: Number,
     street: String,
     block: Number,
     fence: Number,
   },
-  password: String,
-  profilePicture: String,
-  phoneNumber: Number,
+  password: {
+    type: String,
+    minlength: 6,
+    required: [true, "Нууц үгээ оруулна уу"],
+    select: false,
+  },
+  profilePicture: {
+    type: String,
+    required: [true, "Та зураг оруулна уу"],
+  },
+  phoneNumber: {
+    type: Number,
+    length: 8,
+    required: [true,"Утасны дугаараа оруулна уу"],
+  },
   ratingAsRenter: String,
   ratingAsLandlord: String,
 });
