@@ -1,12 +1,12 @@
 import { Schema, model } from "mongoose";
 
-interface IProcommend {
+interface IProcomment {
   propertyID: string;
   userID: string;
   comment: string[];
 }
 
-const procommendSchema = new Schema<IProcommend>(
+const procommentSchema = new Schema<IProcomment>(
   {
     propertyID: String,
     userID: String,
@@ -17,6 +17,6 @@ const procommendSchema = new Schema<IProcommend>(
   }
 );
 
-const Procommend = model<IProcommend>("procommend", procommendSchema);
+const Procomment = model<IProcomment>("procomment", procommentSchema);
 
-export default Procommend;
+export default Procomment;
