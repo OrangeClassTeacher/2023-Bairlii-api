@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import propertiesRoute from "./routes/properties.route";
 import mongoose from "mongoose";
 import usersRoute from "./routes/users.route";
-import procommendRoute from "./routes/procommed";
-import proratingRoute from "./routes/prorating";
+import procommentRoute from "./routes/proComment.route";
+import proratingRoute from "./routes/proRating.route";
 import advertisementRoute from "./routes/advertisement.route"
 
 dotenv.config();
@@ -21,7 +21,7 @@ mongoose
 
 app.use("/api", usersRoute);
 app.use("/api", propertiesRoute);
-app.use("/api", procommendRoute);
+app.use("/api", procommentRoute);
 app.use("/api", proratingRoute);
 app.use("/api", advertisementRoute);
 

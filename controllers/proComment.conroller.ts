@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Procommend from "../models/procommend";
+import Procomment from "../models/proComment.model";
 
 const create = (req: Request, res: Response) => {
   res.json({ status: true });
@@ -7,7 +7,7 @@ const create = (req: Request, res: Response) => {
 
 const getAll = async (req: Request, res: Response) => {
   try {
-    const result = await Procommend.find().limit(10);
+    const result = await Procomment.find().limit(10);
     res.json({ status: true, result });
   } catch (err) {
     res.json({ status: false, message: err });
@@ -17,7 +17,7 @@ const getAll = async (req: Request, res: Response) => {
 const getOne = async (req: Request, res: Response) => {
   const { _id } = req.params;
   try {
-    const result = await Procommend.find({ _id });
+    const result = await Procomment.find({ _id });
     res.json({ status: true, result });
   } catch (err) {
     res.json({ status: false, err });

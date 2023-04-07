@@ -8,8 +8,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const properties_route_1 = __importDefault(require("./routes/properties.route"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const users_route_1 = __importDefault(require("./routes/users.route"));
-const procommed_1 = __importDefault(require("./routes/procommed"));
-const prorating_1 = __importDefault(require("./routes/prorating"));
+const proComment_route_1 = __importDefault(require("./routes/proComment.route"));
+const proRating_route_1 = __importDefault(require("./routes/proRating.route"));
 const advertisement_route_1 = __importDefault(require("./routes/advertisement.route"));
 dotenv_1.default.config();
 const uri = process.env.MONGO_DB_URI || "";
@@ -21,8 +21,8 @@ mongoose_1.default
     .catch((err) => console.log(err));
 app.use("/api", users_route_1.default);
 app.use("/api", properties_route_1.default);
-app.use("/api", procommed_1.default);
-app.use("/api", prorating_1.default);
+app.use("/api", proComment_route_1.default);
+app.use("/api", proRating_route_1.default);
 app.use("/api", advertisement_route_1.default);
 app.get("/", (req, res) => {
     res.send(" ⚡️⚡️⚡️⚡️⚡️Express + TypeScript Server");
