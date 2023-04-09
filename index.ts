@@ -6,6 +6,9 @@ import usersRoute from "./routes/users.route";
 import procommentRoute from "./routes/proComment.route";
 import proratingRoute from "./routes/proRating.route";
 import advertisementRoute from "./routes/advertisement.route"
+import adhistory from "./routes/adhistory.route";
+import renterRating from "./routes/renterRating.route";
+import landLordRating from "./routes/landLordRating.route";
 
 dotenv.config();
 
@@ -24,6 +27,9 @@ app.use("/api", propertiesRoute);
 app.use("/api", procommentRoute);
 app.use("/api", proratingRoute);
 app.use("/api", advertisementRoute);
+app.use("/api", adhistory);
+app.use("/api", renterRating);
+app.use("/api", landLordRating);
 
 app.get("/", (req: Request, res: Response) => {
   res.send(" ⚡️⚡️⚡️⚡️⚡️Express + TypeScript Server");
