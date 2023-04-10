@@ -1,4 +1,4 @@
-import { create, getAll, getOne } from "../controllers/proRating.controller";
+import { create, getAll, getOne } from "../controllers/propertiesRating.controller";
 
 import { Router } from "express";
 

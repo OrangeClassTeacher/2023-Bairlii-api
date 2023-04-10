@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Prorating from "../models/proRating.model";
+import Prorating from "../models/propertiesRating.model";
 
 const create = (req: Request, res: Response) => {
   res.json({ status: true });
