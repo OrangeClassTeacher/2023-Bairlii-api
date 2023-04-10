@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 import propertiesRoute from "./routes/properties.route";
 import mongoose from "mongoose";
 import usersRoute from "./routes/users.route";
-import procommentRoute from "./routes/proComment.route";
-import proratingRoute from "./routes/proRating.route";
+import procommentRoute from "./routes/propertiesComment.route";
+import proratingRoute from "./routes/propertiesRating.route";
 import advertisementRoute from "./routes/advertisement.route"
-import adhistory from "./routes/adhistory.route";
+import adhistory from "./routes/advertisementHistory.route";
 import renterRating from "./routes/renterRating.route";
 import landLordRating from "./routes/landLordRating.route";
 

@@ -1,4 +1,4 @@
-import { create, getAll, getOne } from "../controllers/adhistory.controller";
+import { create, getAll, getOne } from "../controllers/advertisementHistory.controller";
 
 import { Router} from "express";
 
