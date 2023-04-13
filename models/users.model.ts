@@ -30,7 +30,7 @@ const usersSchema = new Schema<IUsers>({
   },
   lastName: {
     type: String,
-    required: [true, "Овогоо оруулна уу"]
+    required: [true, "Овогоо оруулна уу"],
   },
   email: {
     type: String,
@@ -39,15 +39,16 @@ const usersSchema = new Schema<IUsers>({
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       "Имэйл хаяг буруу байна.",
-    ]
+    ],
   },
   address: {
-    district: String,
-    required: [true, "Гэрийн хаягаа оруулна уу"],
-    subdistrict: Number,
-    street: String,
-    block: Number,
-    fence: Number,
+    type: {
+      district: { type: String, required: [true, "Гэрийн хаягаа оруулна уу"] },
+      subdistrict: Number,
+      street: String,
+      block: Number,
+      fence: Number,
+    },
   },
   password: {
     type: String,
@@ -62,7 +63,7 @@ const usersSchema = new Schema<IUsers>({
   phoneNumber: {
     type: Number,
     length: 8,
-    required: [true,"Утасны дугаараа оруулна уу"],
+    required: [true, "Утасны дугаараа оруулна уу"],
   },
   ratingAsRenter: String,
   ratingAsLandlord: String,
