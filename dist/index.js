@@ -8,10 +8,10 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const properties_route_1 = __importDefault(require("./routes/properties.route"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const users_route_1 = __importDefault(require("./routes/users.route"));
-const proComment_route_1 = __importDefault(require("./routes/proComment.route"));
-const proRating_route_1 = __importDefault(require("./routes/proRating.route"));
+const propertiesComment_route_1 = __importDefault(require("./routes/propertiesComment.route"));
+const propertiesRating_route_1 = __importDefault(require("./routes/propertiesRating.route"));
 const advertisement_route_1 = __importDefault(require("./routes/advertisement.route"));
-const adhistory_route_1 = __importDefault(require("./routes/adhistory.route"));
+const advertisementHistory_route_1 = __importDefault(require("./routes/advertisementHistory.route"));
 const renterRating_route_1 = __importDefault(require("./routes/renterRating.route"));
 const landLordRating_route_1 = __importDefault(require("./routes/landLordRating.route"));
 dotenv_1.default.config();
@@ -24,10 +24,10 @@ mongoose_1.default
     .catch((err) => console.log(err));
 app.use("/api", users_route_1.default);
 app.use("/api", properties_route_1.default);
-app.use("/api", proComment_route_1.default);
-app.use("/api", proRating_route_1.default);
+app.use("/api", propertiesComment_route_1.default);
+app.use("/api", propertiesRating_route_1.default);
 app.use("/api", advertisement_route_1.default);
-app.use("/api", adhistory_route_1.default);
+app.use("/api", advertisementHistory_route_1.default);
 app.use("/api", renterRating_route_1.default);
 app.use("/api", landLordRating_route_1.default);
 app.get("/", (req, res) => {
