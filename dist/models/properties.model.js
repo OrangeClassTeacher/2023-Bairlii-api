@@ -6,7 +6,7 @@ const propertiesSchema = new mongoose_1.Schema({
     rating: String,
     comments: [String],
     photos: [String],
-    panaromaPhoto: [String],
+    panaromaPhoto: String,
     roomNumber: Number,
     area: Number,
     locationCoordinate: {

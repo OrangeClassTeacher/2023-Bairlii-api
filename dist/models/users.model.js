@@ -25,7 +25,10 @@ const usersSchema = new mongoose_1.Schema({
     },
     address: {
         type: {
-            district: { type: String, required: [true, "Гэрийн хаягаа оруулна уу"] },
+            district: {
+                type: String,
+                required: [true, "Гэрийн хаягаа оруулна уу"],
+            },
             subdistrict: Number,
             street: String,
             block: Number,
@@ -49,6 +52,6 @@ const usersSchema = new mongoose_1.Schema({
     },
     ratingAsRenter: String,
     ratingAsLandlord: String,
-});
+}, { timestamps: true });
 const Users = (0, mongoose_1.model)("users", usersSchema);
 exports.default = Users;

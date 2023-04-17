@@ -1,3 +1,26 @@
 ### 
 
 GET http://localhost:9000/api/users
+
+
+
+### 
+POST  http://localhost:9000/api/users
+Content-Type: application/json
+
+{
+  "userName": "TestUser20",
+  "firstName": "TestUser20",
+  "lastName": "TestUser20",
+  "email": "TestUser20@gmail.com",
+  "address": {
+    "district": "TestUser20",
+    "subdistrict": 1,
+    "street": "TestUser20"
+  },
+  "password": "password",
+  "profilePicture": "https://picsum.photos/536/354",
+  "phoneNumber": 99889988,
+  "ratingAsRenter": "",
+  "ratingAsLandlord": ""
+}

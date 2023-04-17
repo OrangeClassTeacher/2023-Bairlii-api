@@ -7,8 +7,8 @@ POST  http://localhost:9000/api/advertisement
 Content-Type: application/json
 
 {
-    "userID": "user001",
-    "propertyID": "pro001",
+    "userID": "643cef817222d77b6a46ebe9",
+    "propertyID": "643cefb17222d77b6a46ebeb",
     "price": 500000,
     "rentingDuration": 3,
     "paymentContition": "sar bur tolbor avah",
