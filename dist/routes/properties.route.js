@@ -5,4 +5,5 @@ const express_1 = require("express");
 const route = (0, express_1.Router)();
 route.get("/properties", properties_contoller_1.getAll);
 route.get("/properties/:_id", properties_contoller_1.getOne);
+route.post("/properties", properties_contoller_1.create);
 exports.default = route;

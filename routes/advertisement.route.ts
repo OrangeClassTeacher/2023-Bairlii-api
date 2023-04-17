@@ -6,6 +6,6 @@ const route = Router();
 
 route.get("/advertisement", getAll);
 route.get("/advertisement/:_id", getOne);
-route.put("/advertisement", create);
+route.post("/advertisement", create);
 
 export default route;
