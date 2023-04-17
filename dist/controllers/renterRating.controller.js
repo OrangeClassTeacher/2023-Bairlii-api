@@ -14,9 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getOne = exports.getAll = exports.create = void 0;
 const renterRating_model_1 = __importDefault(require("../models/renterRating.model"));
-const create = (req, res) => {
-    res.json({ status: true });
-};
+const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield renterRating_model_1.default.create(req.body);
+        res.json({ status: true, result });
+    }
+    catch (err) {
+        res.json({ status: false, message: err });
+    }
+});
 exports.create = create;
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

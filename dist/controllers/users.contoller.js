@@ -15,8 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAll = exports.create = void 0;
 const users_model_1 = __importDefault(require("../models/users.model"));
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield users_model_1.default.create(req.body);
-    res.json({ status: true, result });
+    try {
+        const result = yield users_model_1.default.create(req.body);
+        res.json({ status: true, result });
+    }
+    catch (err) {
+        res.json({ status: false, message: err });
+    }
 });
 exports.create = create;
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

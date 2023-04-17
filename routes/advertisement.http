@@ -1,2 +1,17 @@
 ### 
 GET http://localhost:9000/api/advertisement
+
+
+### 
+POST  http://localhost:9000/api/advertisement
+Content-Type: application/json
+
+{
+    "userID": "user001",
+    "propertyID": "pro001",
+    "price": 500000,
+    "rentingDuration": 3,
+    "paymentContition": "sar bur tolbor avah",
+    "adDuration": 3
+}
+

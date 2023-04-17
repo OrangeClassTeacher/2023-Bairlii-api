@@ -5,5 +5,5 @@ const express_1 = require("express");
 const route = (0, express_1.Router)();
 route.get("/advertisement", advertisement_contoller_1.getAll);
 route.get("/advertisement/:_id", advertisement_contoller_1.getOne);
-route.put("/advertisement", advertisement_contoller_1.create);
+route.post("/advertisement", advertisement_contoller_1.create);
 exports.default = route;

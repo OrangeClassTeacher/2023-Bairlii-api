@@ -6,6 +6,6 @@ const route = Router();
 
 route.get("/renterrating", getAll);
 route.get("/renterrating/:_id", getOne);
-route.put("/renterrating", create);
+route.post("/renterrating", create);
 
-export default route
+export default route;

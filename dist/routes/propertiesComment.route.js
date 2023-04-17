@@ -5,4 +5,5 @@ const express_1 = require("express");
 const route = (0, express_1.Router)();
 route.get("/procomment", propertiesComment_conroller_1.getAll);
 route.get("/procomment/:_id", propertiesComment_conroller_1.getOne);
+route.post("/procomment", propertiesComment_conroller_1.create);
 exports.default = route;
