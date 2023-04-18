@@ -1,8 +1,8 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 interface IAdvertisements {
-  userID: string;
-  propertyID: string;
+  userID: { type: Types.ObjectId };
+  propertyID: { type: Types.ObjectId };
   price: number;
   rentingDuration: number;
   paymentContition: string;
@@ -11,16 +11,25 @@ interface IAdvertisements {
 
 const advertisementsSchema = new Schema<IAdvertisements>(
   {
-    userID: String,
-    propertyID: String,
+    userID: {
+      type: Types.ObjectId,
+      ref: "users",
+    },
+    propertyID: {
+      type: Types.ObjectId,
+      ref: "users",
+    },
     price: Number,
     rentingDuration: Number,
     paymentContition: String,
-    adDuration: Number
+    adDuration: Number,
   },
   { timestamps: true }
 );
 
-const Advertisements = model<IAdvertisements>("advertisement", advertisementsSchema);
+const Advertisements = model<IAdvertisements>(
+  "advertisement",
+  advertisementsSchema
+);
 
 export default Advertisements;

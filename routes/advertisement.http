@@ -1,5 +1,6 @@
 ### 
-GET http://localhost:9000/api/advertisement
+GET http://localhost:9000/api/advertisement/
+
 
 
 ### 

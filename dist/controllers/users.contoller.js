@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAll = exports.create = void 0;
+exports.getOne = exports.getAll = exports.create = void 0;
 const users_model_1 = __importDefault(require("../models/users.model"));
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -29,3 +29,14 @@ const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json({ status: true, result });
 });
 exports.getAll = getAll;
+const getOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { _id } = req.params;
+    try {
+        const result = yield users_model_1.default.findById({ _id });
+        res.json({ status: true, result });
+    }
+    catch (err) {
+        res.json({ status: false, err });
+    }
+});
+exports.getOne = getOne;

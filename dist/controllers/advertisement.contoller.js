@@ -26,7 +26,10 @@ const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.create = create;
 const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield advertisement_model_1.default.find().limit(10);
+        const result = yield advertisement_model_1.default.find()
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" })
+            .limit(10);
         res.json({ status: true, result });
     }
     catch (err) {
@@ -37,7 +40,9 @@ exports.getAll = getAll;
 const getOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { _id } = req.params;
     try {
-        const result = yield advertisement_model_1.default.find({ _id });
+        const result = yield advertisement_model_1.default.findById({ _id })
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
         res.json({ status: true, result });
     }
     catch (err) {
