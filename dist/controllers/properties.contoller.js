@@ -37,7 +37,7 @@ exports.getAll = getAll;
 const getOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { _id } = req.params;
     try {
-        const result = yield properties_model_1.default.find({ _id });
+        const result = yield properties_model_1.default.findById({ _id });
         res.json({ status: true, result });
     }
     catch (err) {

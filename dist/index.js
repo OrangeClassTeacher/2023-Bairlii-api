@@ -14,11 +14,13 @@ const advertisement_route_1 = __importDefault(require("./routes/advertisement.ro
 const advertisementHistory_route_1 = __importDefault(require("./routes/advertisementHistory.route"));
 const renterRating_route_1 = __importDefault(require("./routes/renterRating.route"));
 const landLordRating_route_1 = __importDefault(require("./routes/landLordRating.route"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const uri = process.env.MONGO_DB_URI || "";
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 mongoose_1.default
     .connect(uri)
     .then(() => console.log("DB success"))

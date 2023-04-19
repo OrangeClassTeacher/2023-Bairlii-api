@@ -1,5 +1,5 @@
 ### 
-GET http://localhost:9000/api/advertisement/
+GET http://localhost:9000/api/advertisement
 
 
 
@@ -8,11 +8,11 @@ POST  http://localhost:9000/api/advertisement
 Content-Type: application/json
 
 {
-    "userID": "643cef817222d77b6a46ebe9",
-    "propertyID": "643cefb17222d77b6a46ebeb",
-    "price": 500000,
-    "rentingDuration": 3,
-    "paymentContition": "sar bur tolbor avah",
+    "userID": "643ce320cad59c48da078211",
+    "propertyID": "643ceb5c7222d77b6a46ebc5",
+    "price": 1000000,
+    "rentingDuration": 4,
+    "paymentContition": "unegui",
     "adDuration": 3
 }
 

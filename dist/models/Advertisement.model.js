@@ -8,7 +8,7 @@ const advertisementsSchema = new mongoose_1.Schema({
     },
     propertyID: {
         type: mongoose_1.Types.ObjectId,
-        ref: "users",
+        ref: "properties",
     },
     price: Number,
     rentingDuration: Number,

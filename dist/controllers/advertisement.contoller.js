@@ -28,8 +28,7 @@ const getAll = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield advertisement_model_1.default.find()
             .populate({ path: "userID" })
-            .populate({ path: "propertyID" })
-            .limit(10);
+            .populate({ path: "propertyID" });
         res.json({ status: true, result });
     }
     catch (err) {

@@ -9,6 +9,7 @@ import advertisementRoute from "./routes/advertisement.route";
 import adhistory from "./routes/advertisementHistory.route";
 import renterRating from "./routes/renterRating.route";
 import landLordRating from "./routes/landLordRating.route";
+import cors from "cors";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(express.json());
+app.use(cors());
 
 mongoose
     .connect(uri)
