@@ -9,14 +9,14 @@ POST  http://localhost:9000/api/users
 Content-Type: application/json
 
 {
-  "userName": "TestUser20",
-  "firstName": "TestUser20",
-  "lastName": "TestUser20",
-  "email": "TestUser20@gmail.com",
+  "userName": "TestUser21",
+  "firstName": "TestUser21",
+  "lastName": "TestUser21",
+  "email": "TestUser21@gmail.com",
   "address": {
-    "district": "TestUser20",
+    "district": "TestUser21",
     "subdistrict": 1,
-    "street": "TestUser20"
+    "street": "TestUser21"
   },
   "password": "password",
   "profilePicture": "https://picsum.photos/536/354",
