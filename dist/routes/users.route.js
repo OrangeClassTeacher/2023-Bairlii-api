@@ -10,5 +10,6 @@ const route = (0, express_1.Router)();
 route
     .get("/users", auth_1.default, users_contoller_1.getAll)
     .post("/users", users_contoller_1.create)
+    .post("userlogin", users_contoller_1.userLogin)
     .get("/user/:_id", users_contoller_1.getOne);
 exports.default = route;

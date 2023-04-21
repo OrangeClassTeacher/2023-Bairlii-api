@@ -25,7 +25,7 @@ const create = async (req: Request, res: Response) => {
         return;
     }
 
-    const hashedPass = await bcrypt.hash(password, 5);
+    const hashedPass = await bcrypt.hash(password, 10);
 
     if (hashedPass) {
         const newUser = new Users({
@@ -64,9 +64,31 @@ const create = async (req: Request, res: Response) => {
     }
 };
 
-// const userLogin = async (req:Request, res:Response) =>{
-//   const
-// }
+const userLogin = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        res.status(500).send({
+            status: false,
+            message: "Enter user email and password",
+        });
+        return;
+    }
+
+    const user = await Users.findOne({ email });
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+        const secretToken: string = process.env.TOKEN_KEY || "";
+        const token = jwt.sign({ user: user }, secretToken, {
+            expiresIn: "1d",
+        });
+        res.status(200).send({ status: true, message: "success", token });
+        return;
+    } else {
+        res.status(500).send({ status: false, message: "user not found!!" });
+        return;
+    }
+};
 
 const getAll = async (req: Request, res: Response) => {
     const result = await Users.find({}).limit(10);
@@ -84,4 +106,4 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 
-export { create, getAll, getOne };
+export { create, getAll, getOne, userLogin };

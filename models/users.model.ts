@@ -43,22 +43,18 @@ const usersSchema = new Schema<IUsers>(
             ],
         },
         address: {
-            type: {
-                district: {
-                    type: String,
-                    required: [true, "Гэрийн хаягаа оруулна уу"],
-                },
-                subdistrict: Number,
-                street: String,
-                block: Number,
-                fence: Number,
+            district: {
+                type: String,
+                required: [true, "Гэрийн хаягаа оруулна уу"],
             },
+            subdistrict: Number,
+            street: String,
+            block: Number,
+            fence: Number,
         },
         password: {
             type: String,
-            minlength: 6,
             required: [true, "Нууц үгээ оруулна уу"],
-            select: false,
         },
         profilePicture: {
             type: String,
