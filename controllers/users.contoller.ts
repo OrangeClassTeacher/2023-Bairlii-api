@@ -25,7 +25,7 @@ const create = async (req: Request, res: Response) => {
         return;
     }
 
-    const hashedPass = await bcrypt.hash(password, 5);
+    const hashedPass = await bcrypt.hash(password, 10);
 
     if (hashedPass) {
         const newUser = new Users({

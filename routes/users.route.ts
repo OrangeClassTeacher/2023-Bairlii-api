@@ -12,7 +12,7 @@ const route = Router();
 route
     .get("/users", auth, getAll)
     .post("/users", create)
-    .post("userlogin", userLogin)
+    .post("/userlogin", userLogin)
     .get("/user/:_id", getOne);
 
 export default route;
