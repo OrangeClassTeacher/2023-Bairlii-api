@@ -1,30 +1,25 @@
 import { Schema, model, Types } from "mongoose";
 
 interface IUsers {
-    userName: string;
     firstName: string;
     lastName: string;
     email: string;
     address: {
         district: string;
-        subdistrict: number;
-        street: string;
+        subdistrict?: number;
+        street?: string;
         block?: number;
         fence?: number;
     };
     password: string;
     profilePicture: string;
     phoneNumber: number;
-    ratingAsRenter: string;
-    ratingAsLandlord: string;
+    ratingAsRenter?: string;
+    ratingAsLandlord?: string;
 }
 
 const usersSchema = new Schema<IUsers>(
     {
-        userName: {
-            type: String,
-            required: [true, "Хэрэглэгчийн нэрийг оруулна уу"],
-        },
         firstName: {
             type: String,
             required: [true, "Нэрээ оруулна уу"],
