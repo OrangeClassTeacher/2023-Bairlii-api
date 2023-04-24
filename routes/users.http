@@ -11,14 +11,13 @@ POST  http://localhost:9000/api/users
 Content-Type: application/json
 
 {
-  "userName": "TestUser27",
-  "firstName": "TestUser27",
-  "lastName": "TestUser27",
-  "email": "TestUser27@gmail.com",
+  "firstName": "TestUser28",
+  "lastName": "TestUser28",
+  "email": "TestUser28@gmail.com",
   "address": {
-    "district": "TestUser27",
+    "district": "TestUser28",
     "subdistrict": 1,
-    "street": "TestUser27"
+    "street": "TestUser28"
   },
   "password": "password",
   "profilePicture": "https://picsum.photos/536/354",
@@ -33,6 +32,6 @@ POST  http://localhost:9000/api/userlogin
 Content-Type: application/json
 
 {
-  "email": "TestUser27@gmail.com",
+  "email": "TestUser28@gmail.com",
   "password": "password"
 }

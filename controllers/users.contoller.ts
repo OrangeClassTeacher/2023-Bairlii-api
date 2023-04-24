@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 
 const create = async (req: Request, res: Response) => {
     const {
-        userName,
         firstName,
         lastName,
         email,
@@ -17,7 +16,10 @@ const create = async (req: Request, res: Response) => {
         ratingAsLandlord,
     } = req.body;
 
-    if (!password || !email || !userName) {
+    console.log(req.body);
+    
+
+    if (!password || !email ) {
         res.status(500).send({
             status: false,
             message: "incomplete information",
@@ -31,7 +33,7 @@ const create = async (req: Request, res: Response) => {
         const newUser = new Users({
             email,
             password: hashedPass,
-            userName,
+            
             firstName,
             lastName,
             address,
