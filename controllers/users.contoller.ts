@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const create = async (req: Request, res: Response) => {
+const register = async (req: Request, res: Response) => {
     const {
         firstName,
         lastName,
@@ -16,7 +16,7 @@ const create = async (req: Request, res: Response) => {
         ratingAsLandlord,
     } = req.body;
 
-    console.log(req.body);
+    console.log(req.body, "hnjmk");
     
 
     if (!password || !email ) {
@@ -33,7 +33,6 @@ const create = async (req: Request, res: Response) => {
         const newUser = new Users({
             email,
             password: hashedPass,
-            
             firstName,
             lastName,
             address,
@@ -68,6 +67,7 @@ const create = async (req: Request, res: Response) => {
 
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
+    console.log("email",email,"pass", password);
 
     if (!email || !password) {
         res.status(500).send({
@@ -88,6 +88,8 @@ const userLogin = async (req: Request, res: Response) => {
         return;
     } else {
         res.status(500).send({ status: false, message: "user not found!!" });
+       
+        
         return;
     }
 };
@@ -108,4 +110,4 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 
-export { create, getAll, getOne, userLogin };
+export { register, getAll, getOne, userLogin };

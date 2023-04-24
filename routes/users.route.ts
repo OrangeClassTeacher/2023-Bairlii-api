@@ -1,5 +1,5 @@
 import {
-    create,
+    register,
     getAll,
     getOne,
     userLogin,
@@ -11,7 +11,7 @@ const route = Router();
 
 route
     .get("/users", auth, getAll)
-    .post("/users", create)
+    .post("/users", register)
     .post("/userlogin", userLogin)
     .get("/user/:_id", getOne);
 
