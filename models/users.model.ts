@@ -6,9 +6,9 @@ interface IUsers {
     email: string;
     address: {
         district: string;
-        subdistrict?: number;
-        street?: string;
-        block?: number;
+        subdistrict: string;
+        street: string;
+        block: number;
         fence?: number;
     };
     password: string;
@@ -42,7 +42,7 @@ const usersSchema = new Schema<IUsers>(
                 type: String,
                 required: [true, "Гэрийн хаягаа оруулна уу"],
             },
-            subdistrict: Number,
+            subdistrict: String,
             street: String,
             block: Number,
             fence: Number,
