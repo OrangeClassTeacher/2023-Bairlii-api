@@ -1,7 +1,7 @@
 import {
-    create,
-    getAll,
-    getOne,
+  create,
+  getAll,
+  getOne,
 } from "../controllers/propertiesComment.conroller";
 import auth from "../middleware/auth";
 import { Router } from "express";
