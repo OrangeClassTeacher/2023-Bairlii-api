@@ -16,7 +16,7 @@ const register = async (req: Request, res: Response) => {
         ratingAsLandlord,
     } = req.body;
 
-    console.log(req.body, "hnjmk");
+    console.log(req.body, "xaxa");
     
 
     if (!password || !email ) {
