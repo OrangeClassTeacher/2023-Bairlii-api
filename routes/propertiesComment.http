@@ -1,5 +1,5 @@
 ### 
-GET http://localhost:9000/api/procommend
+GET http://localhost:9000/api/procomment
 
 
 
@@ -10,7 +10,10 @@ Content-Type: application/json
 x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFkZHJlc3MiOnsiZGlzdHJpY3QiOiJhdWRpIiwic3RyZWV0Ijoib2Noa29naWluIiwiYmxvY2siOjUsImZlbmNlIjowfSwiX2lkIjoiNjQ0YjIyZTdhODM5OWZiNTVhYzIzOGM5IiwiZmlyc3ROYW1lIjoib2Noa28iLCJsYXN0TmFtZSI6Im9jaGtvIiwiZW1haWwiOiJvY2hrb0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCR5QjJSYWZnRG5EbXdIcTJFLjk3bmcuTkNLa2pkd1RLRDE2Ny50dTJuYXJSQTIuYnlyVUxvTyIsInByb2ZpbGVQaWN0dXJlIjoiaHR0cHM6Ly9yZXMuY2xvdWRpbmFyeS5jb20vZG5vd3B2OXFzL2ltYWdlL3VwbG9hZC92MTY4MjY0NTcyOC9xNGR5dXVmNmVta2R5ZDBobTA4dS5qcGciLCJwaG9uZU51bWJlciI6OTQ2NTA0MDIsInJhdGluZ0FzUmVudGVyIjoiIiwicmF0aW5nQXNMYW5kbG9yZCI6IiIsImNyZWF0ZWRBdCI6IjIwMjMtMDQtMjhUMDE6MzU6MzUuMjE0WiIsInVwZGF0ZWRBdCI6IjIwMjMtMDQtMjhUMDE6MzU6MzUuMjE0WiIsIl9fdiI6MH0sImlhdCI6MTY4MjkwMTcwNywiZXhwIjoxNjgyOTg4MTA3fQ.3kl3cB-yf7qHTjP1zWoKZBG6c4HnNW6mre3IB_5YdzQ
 
 {
-    "propertyID": "643ceb5c7222d77b6a46ebc5",
+    "propertyID": "643cec2a7222d77b6a46ebc9",
     "userID": "644b22e7a8399fb55ac238c9",
-    "comment": ["dajgui bair baina ooo asuuh yum bn dadadada"]
+    "comment": ["fdsavyfbcuneimo,w"]
 }
+
+### 
+GET http://localhost:9000/api/procomments/643ceb5c7222d77b6a46ebc5
