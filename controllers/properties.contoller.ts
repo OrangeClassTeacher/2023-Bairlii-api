@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import Properties from "../models/properties.model";
 
 const create = async (req: Request, res: Response) => {
+  console.log(req.body);
+
   try {
     const result = await Properties.create(req.body);
     res.json({ status: true, result });
