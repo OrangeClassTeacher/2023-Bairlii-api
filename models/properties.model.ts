@@ -4,7 +4,7 @@ interface IProperties {
   userID: String;
   rating: string;
   comments: string[];
-  imageSrc: string[];
+  photos: string[];
   PanoramaPhoto: string[];
 
   guestCount: number;
@@ -12,9 +12,9 @@ interface IProperties {
   bathroomCount: number;
 
   area: number;
-  locationCoordinate: {
-    lang: number;
-    long: number;
+  coordinates: {
+    lat: number;
+    lng: number;
   };
   locationName: string;
   description: string;
@@ -25,16 +25,16 @@ const propertiesSchema = new Schema<IProperties>(
     userID: String,
     rating: String,
     comments: [String],
-    imageSrc: [String],
+    photos: [String],
     PanoramaPhoto: [String],
 
     guestCount: Number,
     roomCount: Number,
     bathroomCount: Number,
     area: Number,
-    locationCoordinate: {
-      lang: Number,
-      long: Number,
+    coordinates: {
+      lat: Number,
+      lng: Number,
     },
     locationName: String,
     description: String,
