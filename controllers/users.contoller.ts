@@ -16,10 +16,7 @@ const register = async (req: Request, res: Response) => {
         ratingAsLandlord,
     } = req.body;
 
-    console.log(req.body, "xaxa");
-    
-
-    if (!password || !email ) {
+    if (!password || !email) {
         res.status(500).send({
             status: false,
             message: "incomplete information",
@@ -67,7 +64,6 @@ const register = async (req: Request, res: Response) => {
 
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    console.log("email",email,"pass", password);
 
     if (!email || !password) {
         res.status(500).send({
@@ -81,8 +77,7 @@ const userLogin = async (req: Request, res: Response) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
         const secretToken: string = process.env.TOKEN_KEY || "";
-        console.log(secretToken);
-        
+
         const token = jwt.sign({ user: user }, secretToken, {
             expiresIn: "1d",
         });
@@ -90,28 +85,26 @@ const userLogin = async (req: Request, res: Response) => {
         return;
     } else {
         res.status(500).send({ status: false, message: "user not found!!" });
-       
-        
+
         return;
     }
 };
 
 const updateUser = async (req: Request, res: Response) => {
     const { _id } = req.params;
-    console.log(req.params);
-    
+
     try {
-      const checkId = await Users.findById(_id);
-      if (checkId) {
-        const result = await Users.findByIdAndUpdate(_id, req.body);
-        res.json({ status: true, result });
-      } else {
-        res.json({ status: false, message: "User not found" });
-      }
+        const checkId = await Users.findById(_id);
+        if (checkId) {
+            const result = await Users.findByIdAndUpdate(_id, req.body);
+            res.json({ status: true, result });
+        } else {
+            res.json({ status: false, message: "User not found" });
+        }
     } catch (err) {
-      res.json({ status: false, message: err });
+        res.json({ status: false, message: err });
     }
-  };
+};
 
 const getAll = async (req: Request, res: Response) => {
     const result = await Users.find({}).limit(10);
