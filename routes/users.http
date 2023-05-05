@@ -35,3 +35,24 @@ Content-Type: application/json
   "email": "nado4@gmail.com",
   "password": "123456"
 }
+
+
+### 
+PUT  http://localhost:9000/api/user/64530f1bf29eae6760268ed1
+Content-Type: application/json
+
+{
+  "firstName": "updated2",
+  "lastName": "updated2",
+  "email": "updated2@gmail.com",
+  "address": {
+    "district": "updated2",
+    "subdistrict": 1,
+    "street": "updated2"
+  },
+  "password": "123456",
+  "profilePicture": "https://picsum.photos/536/354",
+  "phoneNumber": 99889988,
+  "ratingAsRenter": "",
+  "ratingAsLandlord": ""
+}

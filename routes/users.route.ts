@@ -15,6 +15,6 @@ route
     .post("/users", register)
     .post("/userlogin", userLogin)
     .get("/user/:_id", getOne)
-    .put("/user/id", updateUser)
+    .put("/user/:_id", updateUser)
 
 export default route;
