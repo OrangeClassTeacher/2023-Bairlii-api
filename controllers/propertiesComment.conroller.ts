@@ -29,4 +29,14 @@ const getOne = async (req: Request, res: Response) => {
   }
 };
 
-export { create, getAll, getOne };
+const findByPropertyId = async (req: Request, res: Response) => {
+  const { _id } = req.params;
+  try {
+    const result = await Procomment.find({ propertyID: _id });
+    res.json({ status: true, result });
+  } catch (err) {
+    res.json({ status: false, err });
+  }
+};
+
+export { create, getAll, getOne, findByPropertyId };

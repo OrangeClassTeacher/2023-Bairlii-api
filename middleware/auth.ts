@@ -15,6 +15,8 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     try {
         const secretToken: string = process.env.TOKEN_KEY || "";
         const decoded = jwt.verify(token, secretToken);
+
+        // req.user = decoded.user;
         return next();
     } catch {
         return res.json({
