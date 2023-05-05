@@ -81,6 +81,8 @@ const userLogin = async (req: Request, res: Response) => {
 
     if (user && (await bcrypt.compare(password, user.password))) {
         const secretToken: string = process.env.TOKEN_KEY || "";
+        console.log(secretToken);
+        
         const token = jwt.sign({ user: user }, secretToken, {
             expiresIn: "1d",
         });
@@ -93,6 +95,23 @@ const userLogin = async (req: Request, res: Response) => {
         return;
     }
 };
+
+const updateUser = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+    console.log(req.params);
+    
+    try {
+      const checkId = await Users.findById(_id);
+      if (checkId) {
+        const result = await Users.findByIdAndUpdate(_id, req.body);
+        res.json({ status: true, result });
+      } else {
+        res.json({ status: false, message: "User not found" });
+      }
+    } catch (err) {
+      res.json({ status: false, message: err });
+    }
+  };
 
 const getAll = async (req: Request, res: Response) => {
     const result = await Users.find({}).limit(10);
@@ -110,4 +129,4 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 
-export { register, getAll, getOne, userLogin };
+export { register, getAll, getOne, userLogin, updateUser };

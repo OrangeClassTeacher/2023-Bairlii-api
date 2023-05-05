@@ -57,6 +57,8 @@ const usersSchema = new Schema<IUsers>(
         },
         phoneNumber: {
             type: Number,
+            minlength: 8,
+            maxlength:8,
             length: 8,
             required: [true, "Утасны дугаараа оруулна уу"],
         },
