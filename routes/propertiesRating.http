@@ -8,7 +8,10 @@ Content-Type: application/json
 x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFkZHJlc3MiOnsiZGlzdHJpY3QiOiLQkdCw0Y_QvdCz0L7QuyDQtNKv0q_RgNGN0LMiLCJzdWJkaXN0cmljdCI6Miwic3RyZWV0IjoiMzMwIFJvYmluc29uIExuICMgTTE0NDc2IiwiYmxvY2siOjV9LCJfaWQiOiI2NDUzMGUzMWYyOWVhZTY3NjAyNjhlY2YiLCJmaXJzdE5hbWUiOiJOYXJhbmRvcmoiLCJsYXN0TmFtZSI6IkJ5YW1iYWRvcmoiLCJlbWFpbCI6Im5hZG8xQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFZrazhnMnEwLjVoQjd4a3RpZzJxL3VtQklvdlNYU0dsMW5wOE5laUhHWVhpVUhlNWRaLmsuIiwicHJvZmlsZVBpY3R1cmUiOiJodHRwczovL3Jlcy5jbG91ZGluYXJ5LmNvbS9kbm93cHY5cXMvaW1hZ2UvdXBsb2FkL3YxNjgzMTY0NjgzL2JmaHBoaTIybDRncWdwOWNpbXpxLmpwZyIsInBob25lTnVtYmVyIjo5OTExMjIzMywiY3JlYXRlZEF0IjoiMjAyMy0wNS0wNFQwMTo0NToyMS42OThaIiwidXBkYXRlZEF0IjoiMjAyMy0wNS0wNFQwMTo0NToyMS42OThaIiwiX192IjowfSwiaWF0IjoxNjgzMjYzNjExLCJleHAiOjE2ODMzNTAwMTF9.ZhifNG-4M_zj1tuY2rSnnrVzB45Qoy5kujtcv7wUkA0
 
 {
-    "propertyID": "643ceb5c7222d77b6a46ebc5",
-    "rating": 4,
-    "userID": "643ce59445bc455a6a93a3c7"
+    "propertyID": "643ceba87222d77b6a46ebc7",
+    "rating": 5,
+    "userID": "643ce56f45bc455a6a93a3b8"
 }
+
+###
+GET http://localhost:9000/api/prorating/643ceba87222d77b6a46ebc7
