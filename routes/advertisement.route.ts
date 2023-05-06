@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const route = Router();
 
-route.get("/advertisement", getAll);
+route.post("/advertisements", getAll);
 route.get("/advertisement/:_id", getOne);
 route.post("/advertisement", auth, create);
 
