@@ -11,11 +11,16 @@ const create = async (req: Request, res: Response) => {
 };
 
 const getAll = async (req: Request, res: Response) => {
+    const { pageNumber } = req.body;
+
     try {
+        const rowCount = await Advertisements.find().count();
         const result = await Advertisements.find()
+            .limit(9)
+            .skip(9 * (pageNumber - 1))
             .populate({ path: "userID" })
             .populate({ path: "propertyID" });
-        res.json({ status: true, result });
+        res.json({ status: true, result, rowCount });
     } catch (err) {
         res.json({ status: false, message: err });
     }
