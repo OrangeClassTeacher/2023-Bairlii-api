@@ -15,3 +15,14 @@ x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFkZHJlc3MiOns
 
 ###
 GET http://localhost:9000/api/prorating/643ceba87222d77b6a46ebc7
+
+
+###
+PUT http://localhost:9000/api/prorating
+Content-Type: application/json
+
+{
+    "propertyID": "643ceb5c7222d77b6a46ebc5",
+    "rating": 4,
+    "userID": "643ce42645bc455a6a93"
+}

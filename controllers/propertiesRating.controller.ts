@@ -35,4 +35,27 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 
-export { create, getAll, getOne };
+const updateRating = async (req: Request, res: Response) => {
+    const { propertyID, userID } = req.body;
+
+    try {
+        const checkId = await Prorating.find({
+            propertyID: propertyID,
+            userID: userID,
+        });
+        if (checkId[0]) {
+            const result = await Prorating.findByIdAndUpdate(
+                checkId[0]._id,
+                req.body
+            );
+            res.json({ status: "updated", result });
+        } else {
+            const result = await Prorating.create(req.body);
+            res.json({ status: "created", result });
+        }
+    } catch (err) {
+        res.json({ status: false, message: err, nemelt: "user" });
+    }
+};
+
+export { create, getAll, getOne, updateRating };
