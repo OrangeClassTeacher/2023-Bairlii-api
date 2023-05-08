@@ -92,11 +92,18 @@ const userLogin = async (req: Request, res: Response) => {
 
 const updateUser = async (req: Request, res: Response) => {
     const { _id } = req.params;
-
+   
+    
     try {
         const checkId = await Users.findById(_id);
         if (checkId) {
-            const result = await Users.findByIdAndUpdate(_id, req.body);
+            const result = await Users.findByIdAndUpdate(_id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+            console.log(result);
+            console.log(req.body, _id);
+
             res.json({ status: true, result });
         } else {
             res.json({ status: false, message: "User not found" });
