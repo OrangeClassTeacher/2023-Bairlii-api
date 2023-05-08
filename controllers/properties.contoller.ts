@@ -31,4 +31,14 @@ const getOne = async (req: Request, res: Response) => {
   }
 };
 
-export { create, getAll, getOne };
+const getPropertiesByUserId = async (req: Request, res: Response) => {
+  const { _id } = req.params;
+  try {
+    const result = await Properties.find({ userID: _id });
+    res.json({ status: true, result });
+  } catch (err) {
+    res.json({ status: false, err });
+  }
+};
+
+export { create, getAll, getOne, getPropertiesByUserId };
