@@ -90,10 +90,61 @@ const userLogin = async (req: Request, res: Response) => {
     }
 };
 
+const forgotPassword = async (req: Request, res: Response) => {
+    const { email } = req.body;
+
+    if (!email) {
+        res.status(500).send({
+            status: false,
+            message: "Enter user email and password",
+        });
+        return;
+    }
+    const user = await Users.findOne({ email : email });
+    console.log(user);
+
+    if (user) {
+      res.status(200).send({ status: true, message: "success" });
+        return;
+    } else {
+        res.status(500).send({ status: false, message: "user not found!!" });
+    return;
+    }
+
+};
+
+const resetPassword = async (req: Request, res: Response) => {
+
+    const {password, email} = req.body;
+    if ( !password ) {
+        res.status(500).send({
+            status: false,
+            message: "Password oruulna uu",
+        });
+        return;
+    }
+    console.log(password);
+
+    const user = await Users.findOne({ email : email });
+
+    const hashedPass = await bcrypt.hash(password, 10);
+    
+    user.password = hashedPass;
+    user?.save();
+    console.log(user?.password);
+    if (user) {
+        res.status(200).send({ status: true, message: "success" });
+          return;
+      } else {
+          res.status(500).send({ status: false, message: "user not found!!" });
+      return;
+      }
+    
+}
+
 const updateUser = async (req: Request, res: Response) => {
     const { _id } = req.params;
-   
-    
+
     try {
         const checkId = await Users.findById(_id);
         if (checkId) {
@@ -129,4 +180,4 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 
-export { register, getAll, getOne, userLogin, updateUser };
+export { register, getAll, getOne, userLogin, updateUser, resetPassword, forgotPassword };

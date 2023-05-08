@@ -36,7 +36,21 @@ Content-Type: application/json
   "password": "123456"
 }
 
+### 
+POST  http://localhost:9000/api/user/forgotPassword
+Content-Type: application/json
 
+{
+  "email": "nado4@gmail.com"
+}
+
+### 
+POST  http://localhost:9000/api/user/resetPassword
+Content-Type: application/json
+
+{
+  "password": "125656"
+}
 ### 
 PUT  http://localhost:9000/api/user/64530f1bf29eae6760268ed1
 Content-Type: application/json
