@@ -101,7 +101,6 @@ const forgotPassword = async (req: Request, res: Response) => {
         return;
     }
     const user = await Users.findOne({ email : email });
-    console.log(user);
 
     if (user) {
       res.status(200).send({ status: true, message: "success" });
@@ -123,15 +122,12 @@ const resetPassword = async (req: Request, res: Response) => {
         });
         return;
     }
-    console.log(password);
-
     const user = await Users.findOne({ email : email });
 
     const hashedPass = await bcrypt.hash(password, 10);
     
     user.password = hashedPass;
     user?.save();
-    console.log(user?.password);
     if (user) {
         res.status(200).send({ status: true, message: "success" });
           return;
