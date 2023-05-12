@@ -3,9 +3,10 @@ GET http://localhost:9000/api/advertisement
 
 
 ### 
-GET http://localhost:9000/api/advertisement/shjdaghrpwu
+GET http://localhost:9000/api/advertisement
 
-
+###
+GET http://localhost:9000/api/advertisement/filter/price
 
 
 ### 
@@ -13,9 +14,9 @@ POST  http://localhost:9000/api/advertisement
 Content-Type: application/json
 
 {
-    "userID": "643ce320cad59c48da078211",
-    "propertyID": "643ceb5c7222d77b6a46ebc5",
-    "price": 1000000,
+    "userID": "",
+    "propertyID": "",
+    "price": 2000000,
     "rentingDuration": 4,
     "paymentContition": "unegui",
     "adDuration": 3
