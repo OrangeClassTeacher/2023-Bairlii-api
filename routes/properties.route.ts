@@ -3,7 +3,6 @@ import {
     getAll,
     getOne,
     getPropertiesByUserId,
-    updateProperties,
     DistrictFilter,
     RoomFilter1,
     SquareFilter,
