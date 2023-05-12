@@ -26,6 +26,17 @@ const getAll = async (req: Request, res: Response) => {
     }
 };
 
+const getAllWithOutPagination = async (req: Request, res: Response) => {
+    try {
+        const result = await Advertisements.find()
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+};
+
 const getOne = async (req: Request, res: Response) => {
     const { _id } = req.params;
     try {
@@ -38,23 +49,25 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 const PriceFilter = async (req: Request, res: Response) => {
-    const price = req.body
+    const price = req.body;
     console.log(price);
-    
+
     try {
-      const result = await Advertisements.find({ price: {$lte: 500000} }).sort({ createdAt: -1 });
+        const result = await Advertisements.find({
+            price: { $lte: 500000 },
+        }).sort({ createdAt: -1 });
         res.json({ status: true, result });
-        if(result){
+        if (result) {
             res.json({
                 status: true,
-                result: {result}
-            })
-        }else{
-            res.json({status: false, message: "Price not found"})
+                result: { result },
+            });
+        } else {
+            res.json({ status: false, message: "Price not found" });
         }
     } catch (err) {
-      res.json({ status: false, message: err });
+        res.json({ status: false, message: err });
     }
-}
+};
 
-export { create, getAll, getOne, PriceFilter};
+export { create, getAll, getOne, PriceFilter, getAllWithOutPagination };
