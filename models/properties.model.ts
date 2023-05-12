@@ -17,6 +17,7 @@ interface IProperties {
     lng: number;
   };
   locationName: string;
+  category: number;
   description: string;
   category: string;
 }
@@ -38,6 +39,7 @@ const propertiesSchema = new Schema<IProperties>(
       lng: Number,
     },
     locationName: String,
+    category: Number,
     description: String,
   },
   { timestamps: true }
