@@ -13,6 +13,8 @@ x-access-token:
 ###
 GET http://localhost:9000/api/properties/filter/district/643ce59445bc455a6a93a3c7
 
+### 
+GET http://localhost:9000/api/properties/645863b657682b876b025a8b
 
 ###
 GET http://localhost:9000/api/propertiesbyuser/643ce59445bc455a6a93a3c7
@@ -50,3 +52,29 @@ Content-Type: application/json
     "description": "tawlag tohi tuhtai"
 }
 
+
+###
+PUT http://localhost:9000/api/properties
+Content-Type: application/json
+
+{
+    "_id":"645863b657682b876b025a8b",
+   "userID": "6458579969bfda06ec17d89b",
+    "rating": "",
+    "comments": [],
+    "photos": [
+        "https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cm9vbSUyMGluc2lkZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
+        ],
+    "category":"Chingeltei",
+    "PanoramaPhoto": ["/public/hotel-room-panaroma.jpeg"],
+    "roomCount": 3,
+    "guestCount": 3,
+    "bathroomCount": 3,
+    "area": 100,
+    "coordinates": {
+      "lat": 47.91967160871648, 
+      "lng": 106.90279426517796 
+    },
+    "description": "sadfffd",
+    "locationName": "bombogor"
+}

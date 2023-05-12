@@ -19,6 +19,7 @@ interface IProperties {
   locationName: string;
   category: number;
   description: string;
+  category: string;
 }
 
 const propertiesSchema = new Schema<IProperties>(
@@ -28,7 +29,7 @@ const propertiesSchema = new Schema<IProperties>(
     comments: [String],
     photos: [String],
     PanoramaPhoto: [String],
-
+    category: String,
     guestCount: Number,
     roomCount: Number,
     bathroomCount: Number,

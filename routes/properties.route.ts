@@ -3,10 +3,10 @@ import {
   getAll,
   getOne,
   getPropertiesByUserId,
-  DistrictFilter,
-  RoomFilter1,
-  SquareFilter
-} from "../controllers/properties.controller";
+  updateProperties,
+  
+
+} from "../controllers/properties.contoller";
 import auth from "../middleware/auth";
 import { Router } from "express";
 
