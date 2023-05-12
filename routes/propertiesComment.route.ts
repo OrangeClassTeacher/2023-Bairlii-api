@@ -3,7 +3,7 @@ import {
   getAll,
   getOne,
   findByPropertyId,
-} from "../controllers/propertiesComment.conroller";
+} from "../controllers/propertiesComment.controller";
 import auth from "../middleware/auth";
 import { Router } from "express";
 

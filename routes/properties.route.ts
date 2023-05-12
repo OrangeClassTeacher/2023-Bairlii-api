@@ -1,10 +1,12 @@
 import {
-  create,
-  getAll,
-  getOne,
-  getPropertiesByUserId,
-  updateProperties,
-} from "../controllers/properties.contoller";
+    create,
+    getAll,
+    getOne,
+    getPropertiesByUserId,
+    DistrictFilter,
+    RoomFilter1,
+    SquareFilter,
+} from "../controllers/properties.controller";
 import auth from "../middleware/auth";
 import { Router } from "express";
 
@@ -14,6 +16,8 @@ route.get("/properties", getAll);
 route.get("/properties/:_id", getOne);
 route.get("/propertiesbyuser/:_id", getPropertiesByUserId);
 route.post("/properties", auth, create);
-route.put("/properties", updateProperties);
+route.get("/properties/filter/room", RoomFilter1);
+route.get("/properties/filter/area", SquareFilter);
+route.get("/properties/filter/district/:_id", DistrictFilter);
 
 export default route;

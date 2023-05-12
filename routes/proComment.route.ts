@@ -1,4 +1,4 @@
-import { create, getAll, getOne } from "../controllers/proComment.conroller";
+import { create, getAll, getOne } from "../controllers/proComment.controller";
 
 import { Router } from "express";
 

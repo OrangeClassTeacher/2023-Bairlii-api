@@ -17,8 +17,9 @@ interface IProperties {
     lng: number;
   };
   locationName: string;
+  category: number;
   description: string;
-  category: string;
+  // category: string;
 }
 
 const propertiesSchema = new Schema<IProperties>(
@@ -28,7 +29,7 @@ const propertiesSchema = new Schema<IProperties>(
     comments: [String],
     photos: [String],
     PanoramaPhoto: [String],
-    category: String,
+    // category: String,
     guestCount: Number,
     roomCount: Number,
     bathroomCount: Number,
@@ -38,6 +39,7 @@ const propertiesSchema = new Schema<IProperties>(
       lng: Number,
     },
     locationName: String,
+    category: Number,
     description: String,
   },
   { timestamps: true }

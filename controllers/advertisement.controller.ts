@@ -37,5 +37,24 @@ const getOne = async (req: Request, res: Response) => {
     res.json({ status: false, err });
   }
 };
+const PriceFilter = async (req: Request, res: Response) => {
+    const price = req.body
+    console.log(price);
+    
+    try {
+      const result = await Advertisements.find({ price: {$lte: 500000} }).sort({ createdAt: -1 });
+        res.json({ status: true, result });
+        if(result){
+            res.json({
+                status: true,
+                result: {result}
+            })
+        }else{
+            res.json({status: false, message: "Price not found"})
+        }
+    } catch (err) {
+      res.json({ status: false, message: err });
+    }
+}
 
-export { create, getAll, getOne };
+export { create, getAll, getOne, PriceFilter};
