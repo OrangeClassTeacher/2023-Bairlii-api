@@ -1,12 +1,13 @@
 import {
-  create,
-  getAll,
-  getOne,
-  getPropertiesByUserId,
-  updateProperties,
-  
-
-} from "../controllers/properties.contoller";
+    create,
+    getAll,
+    getOne,
+    getPropertiesByUserId,
+    updateProperties,
+    DistrictFilter,
+    RoomFilter1,
+    SquareFilter,
+} from "../controllers/properties.controller";
 import auth from "../middleware/auth";
 import { Router } from "express";
 
