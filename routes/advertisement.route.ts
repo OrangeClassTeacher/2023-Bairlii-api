@@ -1,4 +1,4 @@
-import { create, getAll, getOne, PriceFilter } from "../controllers/advertisement.contoller";
+import { create, getAll, getOne, PriceFilter } from "../controllers/advertisement.controller";
 import auth from "../middleware/auth";
 import { Router } from "express";
 
