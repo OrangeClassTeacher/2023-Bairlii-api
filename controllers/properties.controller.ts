@@ -31,6 +31,32 @@ const getOne = async (req: Request, res: Response) => {
   }
 };
 
+const updateProperties = async (req: Request, res: Response) => {
+  const { _id } = req.body;
+
+  try {
+    const edittingProperty = await Properties.findById({ _id });
+    // console.log(edittingProperty);
+
+    if (edittingProperty) {
+      console.log(edittingProperty._id.toString());
+
+      const result = await Properties.findByIdAndUpdate(
+        edittingProperty._id.toString(),
+        req.body
+      );
+      console.log("dada");
+
+      res.json({ status: "updated", result });
+    } else {
+      res.json({ status: false, message: "property not found" });
+    }
+  } catch (err) {
+    res.json({ status: false, message: err, dada: "dada" });
+  }
+};
+
+
 const getPropertiesByUserId = async (req: Request, res: Response) => {
   const { _id } = req.params;
   console.log(_id);
@@ -106,4 +132,4 @@ const SquareFilter = async (req: Request, res: Response) => {
 
 
 
-export { create, getAll, getOne, getPropertiesByUserId, DistrictFilter,  RoomFilter1 ,SquareFilter};
+export { create, getAll, getOne, getPropertiesByUserId, DistrictFilter, updateProperties,  RoomFilter1 ,SquareFilter};

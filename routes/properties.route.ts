@@ -4,9 +4,11 @@ import {
   getOne,
   getPropertiesByUserId,
   updateProperties,
-  
+  RoomFilter1,
+  SquareFilter,
+  DistrictFilter
 
-} from "../controllers/properties.contoller";
+} from "../controllers/properties.controller";
 import auth from "../middleware/auth";
 import { Router } from "express";
 
@@ -19,5 +21,6 @@ route.post("/properties", auth, create);
 route.get("/properties/filter/room", RoomFilter1);
 route.get("/properties/filter/area", SquareFilter);
 route.get("/properties/filter/district/:_id", DistrictFilter);
+route.put("/properties", updateProperties)
 
 export default route;
