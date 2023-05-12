@@ -1,4 +1,10 @@
-import { create, getAll, getOne, PriceFilter } from "../controllers/advertisement.controller";
+import {
+    create,
+    getAll,
+    getOne,
+    PriceFilter,
+    getAllWithOutPagination,
+} from "../controllers/advertisement.controller";
 import auth from "../middleware/auth";
 import { Router } from "express";
 
@@ -6,6 +12,7 @@ const route = Router();
 
 route.post("/advertisements", getAll);
 route.get("/advertisement/:_id", getOne);
+route.get("/advertisements", getAllWithOutPagination);
 route.post("/advertisement", auth, create);
 route.get("/advertisement/filter/price", PriceFilter);
 
