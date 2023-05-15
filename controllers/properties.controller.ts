@@ -126,6 +126,21 @@ const SquareFilter = async (req: Request, res: Response) => {
     }
 };
 
+const RemoveProperty = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.json({ status: false, message: "User ID not found" });
+    }
+
+    try {
+        const result = await Properties.findByIdAndRemove({ _id });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+};
+
 export {
     create,
     getAll,
@@ -135,4 +150,5 @@ export {
     updateProperties,
     RoomFilter1,
     SquareFilter,
+    RemoveProperty,
 };
