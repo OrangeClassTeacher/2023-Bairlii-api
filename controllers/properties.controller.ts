@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Properties from "../models/properties.model";
+import Advertisements from "../models/advertisement.model";
 
 const create = async (req: Request, res: Response) => {
     console.log(req.body);
@@ -53,15 +54,20 @@ const updateProperties = async (req: Request, res: Response) => {
 
 const getPropertiesByUserId = async (req: Request, res: Response) => {
     const { _id } = req.params;
-    console.log(_id);
+
+    if (!_id) {
+        res.status(404).json({ status: false, message: "User ID not found" });
+        return;
+    }
 
     try {
         const result = await Properties.find({ userID: _id });
         res.json({ status: true, result });
     } catch (err) {
-        res.json({ status: false, err });
+        res.json({ status: false, message: err });
     }
 };
+
 const DistrictFilter = async (req: Request, res: Response) => {
     const { _id } = req.params;
 
@@ -135,7 +141,10 @@ const RemoveProperty = async (req: Request, res: Response) => {
 
     try {
         const result = await Properties.findByIdAndRemove({ _id });
-        res.json({ status: true, result });
+        const resultAboutAdvertisement = await Advertisements.findOneAndRemove({
+            propertyID: _id,
+        });
+        res.json({ status: true, result, resultAboutAdvertisement });
     } catch (err) {
         res.json({ status: false, message: err });
     }

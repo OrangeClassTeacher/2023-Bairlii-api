@@ -93,6 +93,39 @@ const getAdvertisementByPropertyId = async (req: Request, res: Response) => {
     }
 };
 
+const getPropertiesByUserId = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.status(404).json({ status: false, message: "User ID not found" });
+        return;
+    }
+
+    try {
+        const result = await Advertisements.find({ userID: _id })
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+};
+
+const RemoveAdvertisement = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.json({ status: false, message: "User ID not found" });
+    }
+
+    try {
+        const result = await Advertisements.findByIdAndRemove({ _id });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+};
+
 export {
     create,
     getAll,
@@ -100,4 +133,6 @@ export {
     PriceFilter,
     getAllWithOutPagination,
     getAdvertisementByPropertyId,
+    getPropertiesByUserId,
+    RemoveAdvertisement,
 };
