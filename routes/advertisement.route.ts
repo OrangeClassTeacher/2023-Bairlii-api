@@ -2,7 +2,7 @@ import {
     create,
     getAll,
     getOne,
-    PriceFilter,
+    DistrictFilter,
     getAllWithOutPagination,
     getAdvertisementByPropertyId,
     getPropertiesByUserId,
@@ -19,7 +19,7 @@ route.get("/advertisements/:_id", getPropertiesByUserId);
 route.get("/advertisement/check/:_id", getAdvertisementByPropertyId);
 route.get("/advertisements", getAllWithOutPagination);
 route.post("/advertisement", auth, create);
-route.get("/advertisement/filter/price", PriceFilter);
+route.post("/advertisement/filter/price", DistrictFilter);
 route.delete("/advertisement/:_id", RemoveAdvertisement);
 
 export default route;
