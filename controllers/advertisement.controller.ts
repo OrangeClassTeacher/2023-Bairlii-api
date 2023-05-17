@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Advertisements from "../models/advertisement.model";
+import Properties from "../models/properties.model";
 
 const create = async (req: Request, res: Response) => {
   try {
@@ -48,6 +49,64 @@ const getOne = async (req: Request, res: Response) => {
     res.json({ status: false, err });
   }
 };
+
+const DistrictFilter = async (req: Request, res: Response) => {
+  const {
+    _id,
+    area,
+    category,
+    roomNumber,
+    price,
+    value,
+    locationName,
+  } = req.params;
+  const {
+    filteredPricelow,
+    filteredPriceHigh,
+    filteredAreaLow,
+    filteredAreaHigh,
+    roomFilterLow,
+    roomFilterHigh,
+  } = req.body;
+
+  console.log(filteredPricelow, filteredPriceHigh);
+  try {
+    const priceFilter = category 
+      ? { "Advertisements.price": { $gte: filteredPricelow, $lte: filteredPriceHigh } }
+      : {};
+
+    const areaFilter = category
+      ? { area: { $gte: filteredAreaLow, $lte: filteredAreaHigh } }
+      : {};
+
+    const roomFilter = category 
+      ? { roomNumber: { $gte: roomFilterLow, $lte: roomFilterHigh } }
+      : {};
+
+    const filter = await Properties.aggregate([
+      {
+        $lookup: {
+          from: "advertisements",
+          localField: "_id",
+          foreignField: "propertyID",
+          as: "advertisements",
+        },
+      },
+      { $unwind: "$advertisements" },
+      { $match: { ...priceFilter, ...areaFilter, ...roomFilter } },
+    ]);
+
+    console.log(filter);
+
+    res.json({ status: true, result: filter });
+  } catch (err) {
+    res.json({ status: false, err });
+  }
+};
+
+export default DistrictFilter;
+
+
 const PriceFilter = async (req: Request, res: Response) => {
     const price = req.body;
     console.log(price);
@@ -70,4 +129,4 @@ const PriceFilter = async (req: Request, res: Response) => {
     }
 };
 
-export { create, getAll, getOne, PriceFilter, getAllWithOutPagination };
+export { create, getAll, getOne, PriceFilter, DistrictFilter, getAllWithOutPagination };

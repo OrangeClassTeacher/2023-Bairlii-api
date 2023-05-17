@@ -3,6 +3,7 @@ import {
     getAll,
     getOne,
     PriceFilter,
+    DistrictFilter,
     getAllWithOutPagination,
 } from "../controllers/advertisement.controller";
 import auth from "../middleware/auth";
@@ -14,6 +15,6 @@ route.post("/advertisements", getAll);
 route.get("/advertisement/:_id", getOne);
 route.get("/advertisements", getAllWithOutPagination);
 route.post("/advertisement", auth, create);
-route.get("/advertisement/filter/price", PriceFilter);
+route.post("/advertisement/filter/price", DistrictFilter);
 
 export default route;
