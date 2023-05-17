@@ -6,7 +6,12 @@ GET http://localhost:9000/api/advertisement
 GET http://localhost:9000/api/advertisement
 
 ###
-GET http://localhost:9000/api/advertisement/filter/price
+POST http://localhost:9000/api/advertisement/filter/price
+Content-Type: application/json
+
+{
+
+}
 
 
 ### 
@@ -21,4 +26,7 @@ Content-Type: application/json
     "paymentContition": "unegui",
     "adDuration": 3
 }
+
+### 
+GET http://localhost:9000/api/advertisements/644b22e7a8399fb55ac238c9
 

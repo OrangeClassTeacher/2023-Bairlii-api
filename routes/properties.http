@@ -78,3 +78,6 @@ Content-Type: application/json
     "description": "sadfffd",
     "locationName": "bombogor"
 }
+
+###
+DELETE http://localhost:9000/api/properties/6459fc74f686fd3459f9d8db

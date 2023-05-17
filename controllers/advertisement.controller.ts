@@ -1,29 +1,30 @@
 import { Request, Response } from "express";
 import Advertisements from "../models/advertisement.model";
+import Properties from "../models/properties.model";
 
 const create = async (req: Request, res: Response) => {
-  try {
-    const result = await Advertisements.create(req.body);
-    res.json({ status: true, result });
-  } catch (err) {
-    res.json({ status: false, message: err });
-  }
+    try {
+        const result = await Advertisements.create(req.body);
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
 };
 
 const getAll = async (req: Request, res: Response) => {
-  const { pageNumber } = req.body;
+    const { pageNumber } = req.body;
 
-  try {
-    const rowCount = await Advertisements.find().count();
-    const result = await Advertisements.find()
-      .limit(12)
-      .skip(12 * (pageNumber - 1))
-      .populate({ path: "userID" })
-      .populate({ path: "propertyID" });
-    res.json({ status: true, result, rowCount });
-  } catch (err) {
-    res.json({ status: false, message: err });
-  }
+    try {
+        const rowCount = await Advertisements.find().count();
+        const result = await Advertisements.find()
+            .limit(12)
+            .skip(12 * (pageNumber - 1))
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
+        res.json({ status: true, result, rowCount });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
 };
 
 const getAllWithOutPagination = async (req: Request, res: Response) => {
@@ -38,16 +39,73 @@ const getAllWithOutPagination = async (req: Request, res: Response) => {
 };
 
 const getOne = async (req: Request, res: Response) => {
-  const { _id } = req.params;
+    const { _id } = req.params;
+    try {
+        const result = await Advertisements.findById({ _id })
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, err });
+    }
+};
+
+const DistrictFilter = async (req: Request, res: Response) => {
+  const {
+    _id,
+    area,
+    category,
+    roomNumber,
+    price,
+    value,
+    locationName,
+  } = req.params;
+  const {
+    filteredPricelow,
+    filteredPriceHigh,
+    filteredAreaLow,
+    filteredAreaHigh,
+    roomFilterLow,
+    roomFilterHigh,
+  } = req.body;
+
+  console.log(filteredPricelow, filteredPriceHigh);
   try {
-    const result = await Advertisements.findById({ _id })
-      .populate({ path: "userID" })
-      .populate({ path: "propertyID" });
-    res.json({ status: true, result });
+    const priceFilter = category 
+      ? { "Advertisements.price": { $gte: filteredPricelow, $lte: filteredPriceHigh } }
+      : {};
+
+    const areaFilter = category
+      ? { area: { $gte: filteredAreaLow, $lte: filteredAreaHigh } }
+      : {};
+
+    const roomFilter = category 
+      ? { roomNumber: { $gte: roomFilterLow, $lte: roomFilterHigh } }
+      : {};
+
+    const filter = await Properties.aggregate([
+      {
+        $lookup: {
+          from: "advertisements",
+          localField: "_id",
+          foreignField: "propertyID",
+          as: "advertisements",
+        },
+      },
+      { $unwind: "$advertisements" },
+      { $match: { ...priceFilter, ...areaFilter, ...roomFilter } },
+    ]);
+
+    console.log(filter);
+
+    res.json({ status: true, result: filter });
   } catch (err) {
     res.json({ status: false, err });
   }
 };
+
+
+
 const PriceFilter = async (req: Request, res: Response) => {
     const price = req.body;
     console.log(price);
@@ -70,4 +128,72 @@ const PriceFilter = async (req: Request, res: Response) => {
     }
 };
 
-export { create, getAll, getOne, PriceFilter, getAllWithOutPagination };
+const getAdvertisementByPropertyId = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.json({ status: false, message: "User ID not found" });
+        return;
+    }
+
+    try {
+        const result = await Advertisements.find({ propertyID: _id });
+        if (result[0]) {
+            res.status(200).json({ status: true, result });
+        } else {
+            res.status(404).json({
+                status: false,
+                message: "Advertisement not found",
+            });
+        }
+    } catch (err) {
+        res.status(404).json({ status: false, message: err });
+    }
+};
+
+const getPropertiesByUserId = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.status(404).json({ status: false, message: "User ID not found" });
+        return;
+    }
+
+    try {
+        const result = await Advertisements.find({ userID: _id })
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+};
+
+const RemoveAdvertisement = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.json({ status: false, message: "User ID not found" });
+    }
+
+    try {
+        const result = await Advertisements.findByIdAndRemove({ _id });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+};
+
+
+
+export {
+  DistrictFilter,
+    create,
+    getAll,
+    getOne,
+    PriceFilter,
+    getAllWithOutPagination,
+    getAdvertisementByPropertyId,
+    getPropertiesByUserId,
+    RemoveAdvertisement,
+};
