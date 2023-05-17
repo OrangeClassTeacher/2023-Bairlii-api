@@ -3,28 +3,28 @@ import Advertisements from "../models/advertisement.model";
 import Properties from "../models/properties.model";
 
 const create = async (req: Request, res: Response) => {
-  try {
-    const result = await Advertisements.create(req.body);
-    res.json({ status: true, result });
-  } catch (err) {
-    res.json({ status: false, message: err });
-  }
+    try {
+        const result = await Advertisements.create(req.body);
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
 };
 
 const getAll = async (req: Request, res: Response) => {
-  const { pageNumber } = req.body;
+    const { pageNumber } = req.body;
 
-  try {
-    const rowCount = await Advertisements.find().count();
-    const result = await Advertisements.find()
-      .limit(12)
-      .skip(12 * (pageNumber - 1))
-      .populate({ path: "userID" })
-      .populate({ path: "propertyID" });
-    res.json({ status: true, result, rowCount });
-  } catch (err) {
-    res.json({ status: false, message: err });
-  }
+    try {
+        const rowCount = await Advertisements.find().count();
+        const result = await Advertisements.find()
+            .limit(12)
+            .skip(12 * (pageNumber - 1))
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
+        res.json({ status: true, result, rowCount });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
 };
 
 const getAllWithOutPagination = async (req: Request, res: Response) => {
@@ -39,15 +39,15 @@ const getAllWithOutPagination = async (req: Request, res: Response) => {
 };
 
 const getOne = async (req: Request, res: Response) => {
-  const { _id } = req.params;
-  try {
-    const result = await Advertisements.findById({ _id })
-      .populate({ path: "userID" })
-      .populate({ path: "propertyID" });
-    res.json({ status: true, result });
-  } catch (err) {
-    res.json({ status: false, err });
-  }
+    const { _id } = req.params;
+    try {
+        const result = await Advertisements.findById({ _id })
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, err });
+    }
 };
 
 const DistrictFilter = async (req: Request, res: Response) => {
@@ -129,4 +129,69 @@ const PriceFilter = async (req: Request, res: Response) => {
     }
 };
 
-export { create, getAll, getOne, PriceFilter, DistrictFilter, getAllWithOutPagination };
+const getAdvertisementByPropertyId = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.json({ status: false, message: "User ID not found" });
+        return;
+    }
+
+    try {
+        const result = await Advertisements.find({ propertyID: _id });
+        if (result[0]) {
+            res.status(200).json({ status: true, result });
+        } else {
+            res.status(404).json({
+                status: false,
+                message: "Advertisement not found",
+            });
+        }
+    } catch (err) {
+        res.status(404).json({ status: false, message: err });
+    }
+};
+
+const getPropertiesByUserId = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.status(404).json({ status: false, message: "User ID not found" });
+        return;
+    }
+
+    try {
+        const result = await Advertisements.find({ userID: _id })
+            .populate({ path: "userID" })
+            .populate({ path: "propertyID" });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+};
+
+const RemoveAdvertisement = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+
+    if (!_id) {
+        res.json({ status: false, message: "User ID not found" });
+    }
+
+    try {
+        const result = await Advertisements.findByIdAndRemove({ _id });
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+};
+
+export {
+    create,
+    getAll,
+    getOne,
+    PriceFilter,
+    getAllWithOutPagination,
+    getAdvertisementByPropertyId,
+    getPropertiesByUserId,
+    RemoveAdvertisement,
+};

@@ -27,3 +27,6 @@ Content-Type: application/json
     "adDuration": 3
 }
 
+### 
+GET http://localhost:9000/api/advertisements/644b22e7a8399fb55ac238c9
+
