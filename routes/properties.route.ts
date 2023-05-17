@@ -17,7 +17,7 @@ const route = Router();
 route.get("/properties", getAll);
 route.get("/properties/:_id", getOne);
 route.get("/propertiesbyuser/:_id", getPropertiesByUserId);
-route.post("/properties", auth, create);
+route.post("/properties", create);
 route.put("/properties", auth, updateProperties);
 route.get("/properties/filter/room", RoomFilter1);
 route.get("/properties/filter/area", SquareFilter);
