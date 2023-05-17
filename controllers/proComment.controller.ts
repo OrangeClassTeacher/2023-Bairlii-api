@@ -7,8 +7,9 @@ const create = (req: Request, res: Response) => {
 
 const getAll = async (req: Request, res: Response) => {
   try {
-    const result = await Procomment.find().limit(10);
-    res.json({ status: true, result });
+    const count = await Procomment.find().count();
+    const result = await Procomment.find();
+    res.json({ status: true, result, count });
   } catch (err) {
     res.json({ status: false, message: err });
   }
