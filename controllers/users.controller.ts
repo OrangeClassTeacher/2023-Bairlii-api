@@ -100,43 +100,40 @@ const forgotPassword = async (req: Request, res: Response) => {
         });
         return;
     }
-    const user = await Users.findOne({ email : email });
+    const user = await Users.findOne({ email: email });
 
     if (user) {
-      res.status(200).send({ status: true, message: "success" });
+        res.status(200).send({ status: true, message: "success" });
         return;
     } else {
         res.status(500).send({ status: false, message: "user not found!!" });
-    return;
+        return;
     }
-
 };
 
 const resetPassword = async (req: Request, res: Response) => {
-
-    const {password, email} = req.body;
-    if ( !password ) {
+    const { password, email } = req.body;
+    if (!password) {
         res.status(500).send({
             status: false,
             message: "Password oruulna uu",
         });
         return;
     }
-    const user = await Users.findOne({ email : email });
+    const user = await Users.findOne({ email: email });
 
     const hashedPass = await bcrypt.hash(password, 10);
-    
+
     user.password = hashedPass;
     user?.save();
     if (user) {
         res.status(200).send({ status: true, message: "success" });
-          return;
-      } else {
-          res.status(500).send({ status: false, message: "user not found!!" });
-      return;
-      }
-    
-}
+        return;
+    } else {
+        res.status(500).send({ status: false, message: "user not found!!" });
+        return;
+    }
+};
 
 const updateUser = async (req: Request, res: Response) => {
     const { _id } = req.params;
@@ -145,12 +142,9 @@ const updateUser = async (req: Request, res: Response) => {
         const checkId = await Users.findById(_id);
         if (checkId) {
             const result = await Users.findByIdAndUpdate(_id, req.body, {
-    new: true,
-    runValidators: true,
-  });
-            console.log(result);
-            console.log(req.body, _id);
-
+                new: true,
+                runValidators: true,
+            });
             res.json({ status: true, result });
         } else {
             res.json({ status: false, message: "User not found" });
@@ -180,4 +174,12 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 
-export { register, getAll, getOne, userLogin, updateUser, resetPassword, forgotPassword };
+export {
+    register,
+    getAll,
+    getOne,
+    userLogin,
+    updateUser,
+    resetPassword,
+    forgotPassword,
+};
