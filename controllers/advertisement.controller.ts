@@ -12,16 +12,62 @@ const create = async (req: Request, res: Response) => {
 };
 
 const getAll = async (req: Request, res: Response) => {
-    const { pageNumber } = req.body;
+    const { pageNumber, category } = req.body;
 
     try {
         const rowCount = await Advertisements.find().count();
-        const result = await Advertisements.find()
-            .limit(12)
-            .skip(12 * (pageNumber - 1))
-            .populate({ path: "userID" })
-            .populate({ path: "propertyID" });
-        res.json({ status: true, result, rowCount });
+        if (category) {
+            const result = await Advertisements.aggregate([
+                {
+                    $lookup: {
+                        from: "properties",
+                        localField: "propertyID",
+                        foreignField: "_id",
+                        as: "propertyID",
+                    },
+                },
+                { $unwind: "$propertyID" },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "userID",
+                        foreignField: "_id",
+                        as: "userID",
+                    },
+                },
+                { $unwind: "$userID" },
+                {
+                    $match: { "propertyID.category": category },
+                },
+            ])
+                .limit(12)
+                .skip(12 * (pageNumber - 1));
+            res.json({ status: true, result, rowCount });
+        } else {
+            const result = await Advertisements.aggregate([
+                {
+                    $lookup: {
+                        from: "properties",
+                        localField: "propertyID",
+                        foreignField: "_id",
+                        as: "propertyID",
+                    },
+                },
+                { $unwind: "$propertyID" },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "userID",
+                        foreignField: "_id",
+                        as: "userID",
+                    },
+                },
+                { $unwind: "$userID" },
+            ])
+                .limit(12)
+                .skip(12 * (pageNumber - 1));
+            res.json({ status: true, result, rowCount });
+        }
     } catch (err) {
         res.json({ status: false, message: err });
     }
