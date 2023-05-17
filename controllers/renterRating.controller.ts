@@ -12,8 +12,9 @@ const create = async (req: Request, res: Response) => {
 
 const getAll = async (req: Request, res: Response) => {
   try {
-    const result = await RenterRating.find().limit(10);
-    res.json({ status: true, result });
+    const count = await RenterRating.find().count();
+    const result = await RenterRating.find();
+    res.json({ status: true, result, count });
   } catch (err) {
     res.json({ status: false, message: err });
   }

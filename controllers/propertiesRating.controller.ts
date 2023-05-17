@@ -12,8 +12,9 @@ const create = async (req: Request, res: Response) => {
 
 const getAll = async (req: Request, res: Response) => {
     try {
-        const result = await Prorating.find().limit(10);
-        res.json({ status: true, result });
+        const result = await Prorating.find();
+        const count = await Prorating.find().count();
+        res.json({ status: true, result, count });
     } catch (err) {
         res.json({ status: false, message: err });
     }

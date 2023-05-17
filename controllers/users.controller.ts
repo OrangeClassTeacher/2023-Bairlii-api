@@ -161,9 +161,13 @@ const updateUser = async (req: Request, res: Response) => {
 };
 
 const getAll = async (req: Request, res: Response) => {
-    const result = await Users.find({}).limit(10);
-
-    res.json({ status: true, result });
+    try{
+        const result = await Users.find({});
+        const usersCount = await Users.find().count();
+        res.json({ status: true, usersCount, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
 };
 
 const getOne = async (req: Request, res: Response) => {
