@@ -62,7 +62,6 @@ const DistrictFilter = async (req: Request, res: Response) => {
         roomFilterHigh,
     } = req.body;
 
-    console.log(filteredPricelow, filteredPriceHigh);
     try {
         const priceFilter = category
             ? {
@@ -94,8 +93,6 @@ const DistrictFilter = async (req: Request, res: Response) => {
             { $match: { ...priceFilter, ...areaFilter, ...roomFilter } },
         ]);
 
-        console.log(filter);
-
         res.json({ status: true, result: filter });
     } catch (err) {
         res.json({ status: false, err });
@@ -104,7 +101,6 @@ const DistrictFilter = async (req: Request, res: Response) => {
 
 const PriceFilter = async (req: Request, res: Response) => {
     const price = req.body;
-    console.log(price);
 
     try {
         const result = await Advertisements.find({

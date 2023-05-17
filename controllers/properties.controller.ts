@@ -3,8 +3,6 @@ import Properties from "../models/properties.model";
 import Advertisements from "../models/advertisement.model";
 
 const create = async (req: Request, res: Response) => {
-    console.log(req.body);
-
     try {
         const result = await Properties.create(req.body);
         res.json({ status: true, result });
@@ -114,7 +112,6 @@ const RoomFilter1 = async (req: Request, res: Response) => {
 };
 const SquareFilter = async (req: Request, res: Response) => {
     const { area } = req.params;
-    console.log(area);
 
     try {
         const result = await Properties.find({ area: req.params.area });

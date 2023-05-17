@@ -1,19 +1,35 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __importDefault =
+    (this && this.__importDefault) ||
+    function (mod) {
+        return mod && mod.__esModule ? mod : { default: mod };
+    };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const properties_route_1 = __importDefault(require("./routes/properties.route"));
+const properties_route_1 = __importDefault(
+    require("./routes/properties.route")
+);
 const mongoose_1 = __importDefault(require("mongoose"));
 const users_route_1 = __importDefault(require("./routes/users.route"));
-const propertiesComment_route_1 = __importDefault(require("./routes/propertiesComment.route"));
-const propertiesRating_route_1 = __importDefault(require("./routes/propertiesRating.route"));
-const advertisement_route_1 = __importDefault(require("./routes/advertisement.route"));
-const advertisementHistory_route_1 = __importDefault(require("./routes/advertisementHistory.route"));
-const renterRating_route_1 = __importDefault(require("./routes/renterRating.route"));
-const landLordRating_route_1 = __importDefault(require("./routes/landLordRating.route"));
+const propertiesComment_route_1 = __importDefault(
+    require("./routes/propertiesComment.route")
+);
+const propertiesRating_route_1 = __importDefault(
+    require("./routes/propertiesRating.route")
+);
+const advertisement_route_1 = __importDefault(
+    require("./routes/advertisement.route")
+);
+const advertisementHistory_route_1 = __importDefault(
+    require("./routes/advertisementHistory.route")
+);
+const renterRating_route_1 = __importDefault(
+    require("./routes/renterRating.route")
+);
+const landLordRating_route_1 = __importDefault(
+    require("./routes/landLordRating.route")
+);
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const uri = process.env.MONGO_DB_URI || "";
