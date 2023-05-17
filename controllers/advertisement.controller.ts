@@ -104,7 +104,6 @@ const DistrictFilter = async (req: Request, res: Response) => {
   }
 };
 
-export default DistrictFilter;
 
 
 const PriceFilter = async (req: Request, res: Response) => {
@@ -185,7 +184,10 @@ const RemoveAdvertisement = async (req: Request, res: Response) => {
     }
 };
 
+
+
 export {
+  DistrictFilter,
     create,
     getAll,
     getOne,

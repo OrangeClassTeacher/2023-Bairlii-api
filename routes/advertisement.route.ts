@@ -2,7 +2,6 @@ import {
     create,
     getAll,
     getOne,
-    PriceFilter,
     DistrictFilter,
     getAllWithOutPagination,
     getAdvertisementByPropertyId,
