@@ -9,6 +9,7 @@ import advertisementRoute from "./routes/advertisement.route";
 import adhistory from "./routes/advertisementHistory.route";
 import renterRating from "./routes/renterRating.route";
 import landLordRating from "./routes/landLordRating.route";
+import adminRoute from "./routes/admin.route";
 
 import cors from "cors";
 
@@ -35,6 +36,7 @@ app.use("/api", advertisementRoute);
 app.use("/api", adhistory);
 app.use("/api", renterRating);
 app.use("/api", landLordRating);
+app.use("/api", adminRoute);
 
 
 app.get("/", (req: Request, res: Response) => {
