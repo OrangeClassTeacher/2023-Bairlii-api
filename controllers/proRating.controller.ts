@@ -14,6 +14,7 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
+
 const getOne = async (req: Request, res: Response) => {
   const { _id } = req.params;
   try {

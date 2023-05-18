@@ -1,0 +1,9 @@
+###
+POST http://localhost:9000/api/admin/login
+Content-Type: application/json
+x-access-token: 
+
+{
+    "email": "Admin@gmail.com",
+    "password": "123456"
+}

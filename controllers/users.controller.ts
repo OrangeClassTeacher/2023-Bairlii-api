@@ -153,7 +153,21 @@ const updateUser = async (req: Request, res: Response) => {
         res.json({ status: false, message: err });
     }
 };
-
+const deleteUser = async (req: Request, res: Response) => {
+    const { _id } = req.params;
+    console.log(_id);
+    
+    if (!_id) {
+      res.json({ status: false, message: "id not found" });
+      return;
+    }
+    try {
+    await Users.findByIdAndDelete({ _id });
+      res.json({ status: true, message: "success" });
+    } catch (err) {
+      res.json({ status: false, message: err });
+    }
+  };
 const getAll = async (req: Request, res: Response) => {
     try{
         const result = await Users.find({});
@@ -174,6 +188,8 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 
+
+
 export {
     register,
     getAll,
@@ -182,4 +198,5 @@ export {
     updateUser,
     resetPassword,
     forgotPassword,
+    deleteUser
 };
