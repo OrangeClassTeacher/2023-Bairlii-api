@@ -5,7 +5,8 @@ import {
     userLogin,
     updateUser,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    deleteUser
 } from "../controllers/users.controller";
 import auth from "../middleware/auth";
 import { Router } from "express";
@@ -20,6 +21,7 @@ route
     .put("/user/:_id", updateUser)
     .post("/user/forgotPassword", forgotPassword)
     .post("/user/resetPassword", resetPassword)
+    .get("/user/delete/:_id", deleteUser)
 
 
 export default route;

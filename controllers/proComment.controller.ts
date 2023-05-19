@@ -15,6 +15,22 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
+const deleteComment = async (req: Request, res: Response) => {
+  const { _id } = req.params;
+  console.log(_id);
+  
+  if (!_id) {
+    res.json({ status: false, message: "id not found" });
+    return;
+  }
+  try {
+  await Procomment.findByIdAndDelete({ _id });
+    res.json({ status: true, message: "success" });
+  } catch (err) {
+    res.json({ status: false, message: err });
+  }
+};
+
 const getOne = async (req: Request, res: Response) => {
   const { _id } = req.params;
   try {
@@ -25,4 +41,4 @@ const getOne = async (req: Request, res: Response) => {
   }
 };
 
-export { create, getAll, getOne };
+export { create, getAll, getOne, deleteComment };

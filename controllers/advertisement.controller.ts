@@ -81,6 +81,17 @@ const getAll = async (req: Request, res: Response) => {
     }
 };
 
+const getAdmin = async (req: Request, res: Response) => {
+    try {
+        const result = await Advertisements.find();
+        const count = await Advertisements.find().count();
+          
+        res.json({ status: true, result, count });
+    } catch (err) {
+        res.json({ status: false, err });
+    }
+};
+
 const getAllWithOutPagination = async (req: Request, res: Response) => {
     const { category, rooms } = req.body;
     const convertedRooms =
@@ -287,6 +298,7 @@ const RemoveAdvertisement = async (req: Request, res: Response) => {
     }
 };
 
+
 export {
     DistrictFilter,
     create,
@@ -297,4 +309,5 @@ export {
     getAdvertisementByPropertyId,
     getPropertiesByUserId,
     RemoveAdvertisement,
+    getAdmin
 };
