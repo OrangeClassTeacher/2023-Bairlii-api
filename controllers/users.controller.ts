@@ -120,7 +120,7 @@ const resetPassword = async (req: Request, res: Response) => {
         });
         return;
     }
-    const user = await Users.findOne({ email: email });
+    const user: any = await Users.findOne({ email: email });
 
     const hashedPass = await bcrypt.hash(password, 10);
 
@@ -156,20 +156,20 @@ const updateUser = async (req: Request, res: Response) => {
 const deleteUser = async (req: Request, res: Response) => {
     const { _id } = req.params;
     console.log(_id);
-    
+
     if (!_id) {
-      res.json({ status: false, message: "id not found" });
-      return;
+        res.json({ status: false, message: "id not found" });
+        return;
     }
     try {
-    await Users.findByIdAndDelete({ _id });
-      res.json({ status: true, message: "success" });
+        await Users.findByIdAndDelete({ _id });
+        res.json({ status: true, message: "success" });
     } catch (err) {
-      res.json({ status: false, message: err });
+        res.json({ status: false, message: err });
     }
-  };
+};
 const getAll = async (req: Request, res: Response) => {
-    try{
+    try {
         const result = await Users.find({});
         const usersCount = await Users.find().count();
         res.json({ status: true, usersCount, result });
@@ -188,8 +188,6 @@ const getOne = async (req: Request, res: Response) => {
     }
 };
 
-
-
 export {
     register,
     getAll,
@@ -198,5 +196,5 @@ export {
     updateUser,
     resetPassword,
     forgotPassword,
-    deleteUser
+    deleteUser,
 };
