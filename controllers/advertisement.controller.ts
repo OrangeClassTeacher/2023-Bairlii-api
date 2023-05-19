@@ -12,72 +12,137 @@ const create = async (req: Request, res: Response) => {
 };
 
 const getAll = async (req: Request, res: Response) => {
-    const { pageNumber, category } = req.body;
+    const { pageNumber, category, rooms, sort } = req.body;
+    const convertedRooms =
+        rooms == "4 өрөө"
+            ? 4
+            : rooms == "3 өрөө"
+            ? 3
+            : rooms == "2 өрөө"
+            ? 2
+            : rooms == "1 өрөө"
+            ? 1
+            : "";
+
+    const sortingCategory: any = category == undefined ? "" : category;
+    const match =
+        rooms == undefined
+            ? {
+                  "propertyID.roomCount": {
+                      $gt: 0,
+                  },
+              }
+            : {
+                  "propertyID.roomCount": {
+                      $eq: convertedRooms,
+                  },
+              };
 
     try {
         const rowCount = await Advertisements.find().count();
-        if (category) {
-            const result = await Advertisements.aggregate([
-                {
-                    $lookup: {
-                        from: "properties",
-                        localField: "propertyID",
-                        foreignField: "_id",
-                        as: "propertyID",
-                    },
+        const result = await Advertisements.aggregate([
+            {
+                $lookup: {
+                    from: "properties",
+                    localField: "propertyID",
+                    foreignField: "_id",
+                    as: "propertyID",
                 },
-                { $unwind: "$propertyID" },
-                {
-                    $lookup: {
-                        from: "users",
-                        localField: "userID",
-                        foreignField: "_id",
-                        as: "userID",
-                    },
+            },
+            { $unwind: "$propertyID" },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "userID",
+                    foreignField: "_id",
+                    as: "userID",
                 },
-                { $unwind: "$userID" },
-                {
-                    $match: { "propertyID.category": category },
+            },
+            { $unwind: "$userID" },
+            {
+                $match: {
+                    $and: [
+                        {
+                            "propertyID.category": {
+                                $regex: sortingCategory,
+                                $options: "i",
+                            },
+                        },
+                        match,
+                    ],
                 },
-            ])
-                .limit(12)
-                .skip(12 * (pageNumber - 1));
-            res.json({ status: true, result, rowCount });
-        } else {
-            const result = await Advertisements.aggregate([
-                {
-                    $lookup: {
-                        from: "properties",
-                        localField: "propertyID",
-                        foreignField: "_id",
-                        as: "propertyID",
-                    },
-                },
-                { $unwind: "$propertyID" },
-                {
-                    $lookup: {
-                        from: "users",
-                        localField: "userID",
-                        foreignField: "_id",
-                        as: "userID",
-                    },
-                },
-                { $unwind: "$userID" },
-            ])
-                .limit(12)
-                .skip(12 * (pageNumber - 1));
-            res.json({ status: true, result, rowCount });
-        }
+            },
+        ])
+            .limit(12)
+            .skip(12 * (pageNumber - 1));
+        res.json({ status: true, result, rowCount });
     } catch (err) {
         res.json({ status: false, message: err });
     }
 };
 
 const getAllWithOutPagination = async (req: Request, res: Response) => {
+    const { category, rooms } = req.body;
+    const convertedRooms =
+        rooms == "4 өрөө"
+            ? 4
+            : rooms == "3 өрөө"
+            ? 3
+            : rooms == "2 өрөө"
+            ? 2
+            : rooms == "1 өрөө"
+            ? 1
+            : "";
+
+    const sortingCategory: any = category == undefined ? "" : category;
+    const match =
+        rooms == undefined
+            ? {
+                  "propertyID.roomCount": {
+                      $gt: 0,
+                  },
+              }
+            : {
+                  "propertyID.roomCount": {
+                      $eq: convertedRooms,
+                  },
+              };
+
     try {
-        const result = await Advertisements.find()
-            .populate({ path: "userID" })
-            .populate({ path: "propertyID" });
+        const rowCount = await Advertisements.find().count();
+        const result = await Advertisements.aggregate([
+            {
+                $lookup: {
+                    from: "properties",
+                    localField: "propertyID",
+                    foreignField: "_id",
+                    as: "propertyID",
+                },
+            },
+            { $unwind: "$propertyID" },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "userID",
+                    foreignField: "_id",
+                    as: "userID",
+                },
+            },
+            { $unwind: "$userID" },
+            {
+                $match: {
+                    $and: [
+                        {
+                            "propertyID.category": {
+                                $regex: sortingCategory,
+                                $options: "i",
+                            },
+                        },
+                        match,
+                    ],
+                },
+            },
+        ]);
         res.json({ status: true, result });
     } catch (err) {
         res.json({ status: false, message: err });
