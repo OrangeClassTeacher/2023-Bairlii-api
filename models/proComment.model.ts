@@ -6,7 +6,7 @@ interface IProcomment {
   comment: string[];
 }
 
-const procommentSchema = new Schema<IProcomment>(
+const proCommentSchema = new Schema<IProcomment>(
   {
     propertyID: String,
     userID: String,
@@ -17,6 +17,6 @@ const procommentSchema = new Schema<IProcomment>(
   }
 );
 
-const Procomment = model<IProcomment>("procomment", procommentSchema);
+const Procomment = model<IProcomment>("proComment", proCommentSchema);
 
 export default Procomment;
