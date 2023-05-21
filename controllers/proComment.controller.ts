@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Procomment from "../models/proComment.model";
+import Advertisements from "../models/advertisement.model";
 
 const create = (req: Request, res: Response) => {
   res.json({ status: true });
@@ -15,21 +16,6 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
-const deleteComment = async (req: Request, res: Response) => {
-  const { _id } = req.params;
-  console.log(_id);
-  
-  if (!_id) {
-    res.json({ status: false, message: "id not found" });
-    return;
-  }
-  try {
-  await Procomment.findByIdAndDelete({ _id });
-    res.json({ status: true, message: "success" });
-  } catch (err) {
-    res.json({ status: false, message: err });
-  }
-};
 
 const getOne = async (req: Request, res: Response) => {
   const { _id } = req.params;
@@ -41,4 +27,4 @@ const getOne = async (req: Request, res: Response) => {
   }
 };
 
-export { create, getAll, getOne, deleteComment };
+export { create, getAll, getOne };

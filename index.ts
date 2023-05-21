@@ -4,6 +4,7 @@ import propertiesRoute from "./routes/properties.route";
 import mongoose from "mongoose";
 import usersRoute from "./routes/users.route";
 import procommentRoute from "./routes/propertiesComment.route";
+import proComment from "./routes/proComment.route"
 import proratingRoute from "./routes/propertiesRating.route";
 import advertisementRoute from "./routes/advertisement.route";
 import adhistory from "./routes/advertisementHistory.route";
@@ -37,6 +38,7 @@ app.use("/api", adhistory);
 app.use("/api", renterRating);
 app.use("/api", landLordRating);
 app.use("/api", adminRoute);
+app.use("/api", proComment);
 
 
 app.get("/", (req: Request, res: Response) => {
