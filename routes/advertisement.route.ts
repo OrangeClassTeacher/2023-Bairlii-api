@@ -19,7 +19,7 @@ route.get("/advertisements/admin", auth, getAdmin)
 route.get("/advertisement/:_id", getOne);
 route.get("/advertisements/:_id", getPropertiesByUserId);
 route.get("/advertisement/check/:_id", getAdvertisementByPropertyId);
-route.get("/advertisements", getAllWithOutPagination);
+route.post("/advertisementsformap", getAllWithOutPagination);
 route.post("/advertisement", auth, create);
 route.post("/advertisement/filter/price", DistrictFilter);
 route.delete("/advertisement/:_id", RemoveAdvertisement);
