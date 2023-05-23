@@ -14,13 +14,13 @@ const create = async (req: Request, res: Response) => {
 const getAll = async (req: Request, res: Response) => {
     const { pageNumber, category, rooms, sort } = req.body;
     const convertedRooms =
-        rooms == "4 өрөө"
+        rooms == "4 rooms"
             ? 4
-            : rooms == "3 өрөө"
+            : rooms == "3 rooms"
             ? 3
-            : rooms == "2 өрөө"
+            : rooms == "2 rooms"
             ? 2
-            : rooms == "1 өрөө"
+            : rooms == "1 room"
             ? 1
             : "";
 
@@ -85,7 +85,7 @@ const getAdmin = async (req: Request, res: Response) => {
     try {
         const result = await Advertisements.find();
         const count = await Advertisements.find().count();
-          
+
         res.json({ status: true, result, count });
     } catch (err) {
         res.json({ status: false, err });
@@ -95,13 +95,13 @@ const getAdmin = async (req: Request, res: Response) => {
 const getAllWithOutPagination = async (req: Request, res: Response) => {
     const { category, rooms } = req.body;
     const convertedRooms =
-        rooms == "4 өрөө"
+        rooms == "4 rooms"
             ? 4
-            : rooms == "3 өрөө"
+            : rooms == "3 rooms"
             ? 3
-            : rooms == "2 өрөө"
+            : rooms == "2 rooms"
             ? 2
-            : rooms == "1 өрөө"
+            : rooms == "1 room"
             ? 1
             : "";
 
@@ -298,7 +298,6 @@ const RemoveAdvertisement = async (req: Request, res: Response) => {
     }
 };
 
-
 export {
     DistrictFilter,
     create,
@@ -309,5 +308,5 @@ export {
     getAdvertisementByPropertyId,
     getPropertiesByUserId,
     RemoveAdvertisement,
-    getAdmin
+    getAdmin,
 };
