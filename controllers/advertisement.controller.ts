@@ -13,6 +13,8 @@ const create = async (req: Request, res: Response) => {
 
 const getAll = async (req: Request, res: Response) => {
     const { pageNumber, category, rooms, sort } = req.body;
+    console.log(sort);
+
     const convertedRooms =
         rooms == "4 rooms"
             ? 4
@@ -24,12 +26,14 @@ const getAll = async (req: Request, res: Response) => {
             ? 1
             : "";
 
-    const sorting =
+    const sorting: Record<string, 1 | -1> =
         sort == "Sort by price"
-            ? { $sort: { price: 1 } }
+            ? { price: 1 }
             : sort == "Sort by location"
-            ? { $sort: { "propertyID.locationName": 1 } }
-            : { $sort: { createdAt: 1 } };
+            ? { "propertyID.locationName": 1 }
+            : { createdAt: 1 };
+
+    console.log(sorting, "hgfdja");
 
     const sortingCategory: any = category == undefined ? "" : category;
     const match =
@@ -79,7 +83,7 @@ const getAll = async (req: Request, res: Response) => {
                     ],
                 },
             },
-            sorting,
+            { $sort: sorting },
             { $limit: 12 + 12 * (pageNumber - 1) },
             { $skip: 12 * (pageNumber - 1) },
         ]);
