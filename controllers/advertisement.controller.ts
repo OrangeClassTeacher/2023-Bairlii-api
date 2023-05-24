@@ -28,9 +28,9 @@ const getAll = async (req: Request, res: Response) => {
 
     const sorting: Record<string, 1 | -1> =
         sort == "Sort by price"
-            ? { price: 1 }
+            ? { price: -1 }
             : sort == "Sort by location"
-            ? { "propertyID.locationName": 1 }
+            ? { "propertyID.locationName": -1 }
             : { createdAt: 1 };
 
     console.log(sorting, "hgfdja");
