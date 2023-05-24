@@ -24,6 +24,13 @@ const getAll = async (req: Request, res: Response) => {
             ? 1
             : "";
 
+    const sorting =
+        sort == "Sort by price"
+            ? { $sort: { price: 1 } }
+            : sort == "Sort by location"
+            ? { $sort: { "propertyID.locationName": 1 } }
+            : { $sort: { createdAt: 1 } };
+
     const sortingCategory: any = category == undefined ? "" : category;
     const match =
         rooms == undefined
@@ -72,9 +79,10 @@ const getAll = async (req: Request, res: Response) => {
                     ],
                 },
             },
-        ])
-            .limit(12)
-            .skip(12 * (pageNumber - 1));
+            sorting,
+            { $limit: 12 + 12 * (pageNumber - 1) },
+            { $skip: 12 * (pageNumber - 1) },
+        ]);
         res.json({ status: true, result, rowCount });
     } catch (err) {
         res.json({ status: false, message: err });
