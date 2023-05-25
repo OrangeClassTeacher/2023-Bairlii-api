@@ -13,7 +13,6 @@ const create = async (req: Request, res: Response) => {
 
 const getAll = async (req: Request, res: Response) => {
     const { pageNumber, category, rooms, sort } = req.body;
-    console.log(sort);
 
     const convertedRooms =
         rooms == "4 rooms"
@@ -50,7 +49,41 @@ const getAll = async (req: Request, res: Response) => {
               };
 
     try {
-        const rowCount = await Advertisements.find().count();
+        const rowCount = await Advertisements.aggregate([
+            {
+                $lookup: {
+                    from: "properties",
+                    localField: "propertyID",
+                    foreignField: "_id",
+                    as: "propertyID",
+                },
+            },
+            { $unwind: "$propertyID" },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "userID",
+                    foreignField: "_id",
+                    as: "userID",
+                },
+            },
+            { $unwind: "$userID" },
+            {
+                $match: {
+                    $and: [
+                        {
+                            "propertyID.category": {
+                                $regex: sortingCategory,
+                                $options: "i",
+                            },
+                        },
+                        match,
+                    ],
+                },
+            },
+            { $count: "rowCount" },
+        ]);
+
         const result = await Advertisements.aggregate([
             {
                 $lookup: {

@@ -41,20 +41,17 @@ const findByPropertyId = async (req: Request, res: Response) => {
 };
 const deleteComment = async (req: Request, res: Response) => {
     const { _id } = req.params;
-    console.log(_id);
-    
+
     if (!_id) {
-      res.json({ status: false, message: "id not found" });
+        res.json({ status: false, message: "id not found" });
     }
     try {
-      const result = await Procomment.findByIdAndDelete({ _id });
-      console.log(result);
-      
-     
-      res.json({ status: true, result, message: "success" });
+        const result = await Procomment.findByIdAndDelete({ _id });
+
+        res.json({ status: true, result, message: "success" });
     } catch (err) {
-      res.json({ status: false, message: err });
+        res.json({ status: false, message: err });
     }
-  };
+};
 
 export { create, getAll, getOne, findByPropertyId, deleteComment };
